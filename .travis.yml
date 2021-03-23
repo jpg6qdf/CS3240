@@ -3,6 +3,9 @@ python:
 - '3.8'
 install:
 - pip install -r requirements-travis.txt
+before_script:
+- psql -U postgres -c "CREATE USER test WITH PASSWORD 'test';"
+- psql -U postgres -c "ALTER USER test CREATEDB;"
 script:
 - python manage.py test
 deploy:
