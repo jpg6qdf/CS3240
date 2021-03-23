@@ -9,8 +9,6 @@ services:
   - postgresql
 before_script:
   - psql -U postgres -c 'CREATE DATABASE dbtest;'
-  - psql -U postgres -c "CREATE EXTENSION postgis" -d dbtest
-  - psql -U postgres -c "CREATE EXTENSION postgis_topology" -d dbtest
   - psql -c "CREATE USER test WITH PASSWORD 'test';" -U postgres
   - psql -c 'ALTER USER test CREATEDB;' -U postgres
   - psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE dbtest to test;"
