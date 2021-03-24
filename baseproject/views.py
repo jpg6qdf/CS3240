@@ -11,4 +11,4 @@ from .models import User
 class UserProfile(CreateView):
     model = User
     fields = ('name', 'achievements')
-    success_url = "userprofile"
+    context_object_name = 'achievements'
