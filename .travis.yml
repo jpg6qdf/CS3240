@@ -1,19 +1,13 @@
 language: python
 python:
 - '3.8'
-addons:
-  - postgresql: "9.3"
-env:
-  - SECRET_KEY=test DB_NAME=dbtest DB_USER=test DB_PASS=test
 install:
 - pip install -r requirements-travis.txt
 services:
   - postgresql
 before_script:
-  - psql -c 'CREATE DATABASE dbtest;' -U postgres -p 5433
-  - psql -c "CREATE USER test WITH PASSWORD 'test';" -U postgres
-  - psql -c 'ALTER USER test CREATEDB;' -U postgres
-  - psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE dbtest to test;"
+  - psql -c 'ALTER USER bbmcmvrfpaacem CREATEDB;' -U postgres
+  - psql -c 'create database dbtest' -U postgres
   - python manage.py migrate
   
 script:
