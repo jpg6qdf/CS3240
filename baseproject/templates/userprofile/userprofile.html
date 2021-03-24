@@ -19,7 +19,6 @@
 
     <h1> User Profile </h1>
 
-    {% if user.is_authenticated %}
     <h4> {{ user.username }} !</h4>
 
 <!--    <ul class="list-group">-->
@@ -27,12 +26,11 @@
 <!--            <li class=""list-group-item"><p> a </p></li>-->
 <!--        {% endfor %}-->
 <!--    </ul>-->
-
-    {% else %}
+{% else %}
     <div class="text-center" style="margin: 10px 10px 10px 10px">
         <a class="btn btn-primary" href="{% provider_login_url 'google' %}">Login with Google</a>
     </div>
-    {% endif %}
+{% endif %}
 
 </body>
 
