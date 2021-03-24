@@ -21,4 +21,5 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name="login/index.html")),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('userprofile/', views.UserProfile.as_view(), name='userprofile'),
 ]
