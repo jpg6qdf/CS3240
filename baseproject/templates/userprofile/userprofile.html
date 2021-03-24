@@ -8,7 +8,6 @@
 
 </head>
 {% if user.is_authenticated %}
-    <p>Welcome, {{ user.username }} !</p>
 <body>
     <nav class="navbar navbar-light bg-info" style="margin: 0px 0px 10px 0px;">
        <li class="nav-item">
@@ -30,7 +29,6 @@
                 <div class="media align-items-end profile-head">
                     <div class="profile mr-3"><a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a></div>
                     <div class="media-body mb-5 text-white">
-                        <p> {{ user.username }}</p>
                         <h4 class="mt-0 mb-0">{{ user.username }}</h4>
                         <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p>
                     </div>
@@ -61,6 +59,11 @@
     </div>
 </div>
 
+    {% else %}
+    <div class="text-center" style="margin: 10px 10px 10px 10px">
+        <a class="btn btn-primary" href="{% provider_login_url 'google' %}">Login with Google</a>
+    </div>
+    {% endif %}
 
 </body>
 
