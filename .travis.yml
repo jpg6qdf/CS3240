@@ -1,6 +1,8 @@
 language: python
 python:
 - '3.8'
+addons:
+  - postgresql: "9.3"
 env:
   - SECRET_KEY=test DB_NAME=dbtest DB_USER=test DB_PASS=test
 install:
@@ -15,7 +17,7 @@ before_script:
   - python manage.py migrate
   
 script:
-- python manage.py test
+- python manage.py test --keepdb
 deploy:
   provider: heroku
   api_key:
