@@ -7,10 +7,16 @@
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
-
+{% if user.is_authenticated %}
+    <p>Welcome, {{ user.username }} !</p>
 <body>
     <nav class="navbar navbar-light bg-info" style="margin: 0px 0px 10px 0px;">
-        <span class="navbar-brand mb-0 h1">Fitter Late Than Never</span>
+       <li class="nav-item">
+                <a class="nav-link" href="{% url 'baseproject:home' %}">Fitter Later Than Never</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="{% url 'baseproject:userprofile' %}">Your Profile</a>
+              </li>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
