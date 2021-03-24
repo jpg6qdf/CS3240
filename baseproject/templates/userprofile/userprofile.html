@@ -10,12 +10,7 @@
 {% if user.is_authenticated %}
 <body>
     <nav class="navbar navbar-light bg-info" style="margin: 0px 0px 10px 0px;">
-       <li class="nav-item">
-                <a class="nav-link" href="login/index.html">Fitter Later Than Never</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="userprofile/userprofile.html">Your Profile</a>
-              </li>
+       <span class="navbar-brand mb-0 h1">Fitter Late Than Never</span>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
@@ -29,7 +24,7 @@
                 <div class="media align-items-end profile-head">
                     <div class="profile mr-3"><a href="#" class="btn btn-outline-dark btn-sm btn-block">Edit profile</a></div>
                     <div class="media-body mb-5 text-white">
-                        <h4 class="mt-0 mb-0">{{ user.username }}</h4>
+                        <p class="mt-0 mb-0">{{ user.username }}</p>
                         <p class="small mb-4"> <i class="fas fa-map-marker-alt mr-2"></i>New York</p>
                     </div>
                 </div>
