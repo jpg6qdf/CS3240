@@ -21,8 +21,8 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    path('', TemplateView.as_view(template_name="login/index.html")),
+    path('', TemplateView.as_view(template_name="login/index.html"), name='home'),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('userprofile/', views.UserProfile.as_view(template_name="userprofile/userprofile.html")),
+    path('userprofile/', views.UserProfile.as_view(template_name="userprofile/userprofile.html"), name='userprofile'),
 ]
