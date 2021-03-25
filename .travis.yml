@@ -6,9 +6,7 @@ install:
 services:
   - postgresql
 before_script:
-  - psql -c "CREATE USER test with PASSWORD 'test';" -U postgres
-  - psql -c 'ALTER USER test CREATEDB;' -U postgres
-  - psql -c 'create database dbtest' -U postgres
+  - psql -c 'ALTER USER bbmcmvrfpaacem CREATEDB;' -U postgres
   - python3 manage.py migrate
   - python3 manage.py makemigrations
   
