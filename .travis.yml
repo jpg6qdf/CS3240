@@ -1,11 +1,13 @@
 language: python
 python:
 - '3.8'
-install:
-- pip install -r requirements-travis.txt
 services:
   - postgresql
+install:
+- pip install -r requirements-travis.txt
+
 before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
   - psql -c 'ALTER USER bbmcmvrfpaacem CREATEDB;' -U postgres
   - python3 manage.py migrate
   - python3 manage.py makemigrations
