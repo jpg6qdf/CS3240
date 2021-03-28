@@ -88,6 +88,9 @@ DATABASES = {
         'PASSWORD': '00ada4a13531428b738a578cd901929cbb0b531d7d24ec4c601628d051cd3830',
         'HOST': 'ec2-52-23-190-126.compute-1.amazonaws.com',
         'PORT': '5432',
+        'Test': {
+            'NAME': 'dbtest',
+        },
 
     }
 }

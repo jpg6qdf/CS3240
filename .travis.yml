@@ -8,8 +8,7 @@ install:
 
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
-  - psql -c "CREATE USER bbmcmvrfpaacem with PASSWORD '00ada4a13531428b738a578cd901929cbb0b531d7d24ec4c601628d051cd3830';"
-  - psql -c 'ALTER USER bbmcmvrfpaacem CREATEDB;' -U postgres
+  - psql -c 'ALTER USER dbtest CREATEDB'; -U postgres
   - python3 manage.py migrate
   - python3 manage.py makemigrations
   
