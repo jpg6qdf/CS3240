@@ -16,9 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
+from . import views
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="login/index.html")),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    
+    path('login/index.html', TemplateView.as_view(template_name="login/index.html")),
+
+    path('Logs', views.Logs, name='Logs'),
+    path('Logs.html', views.Logs, name='Logs') #from button, is logs.html. from submit, is logs. Why.
 ]

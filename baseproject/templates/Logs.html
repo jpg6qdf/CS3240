@@ -1,4 +1,10 @@
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+
 {% load socialaccount %}
+
 <!DOCTYPE html>
 <html>
 
@@ -10,7 +16,7 @@
 
 <body>
     <nav class="navbar navbar-light bg-info" style="margin: 0px 0px 10px 0px;">
-        <a href="index.html">
+        <a href="login/index.html">
             <span class="navbar-brand mb-0 h1">Fitter Late Than Never</span>
         </a>
         <form class="form-inline my-2 my-lg-0">
@@ -19,17 +25,21 @@
         </form>
     </nav>
 
-    <button type="button">
-        <a href="{% url 'Logs' %}">Log your fittercize!</a>
-    </button>
 
+    <form action="Logs.html" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <input type="submit" value="Submit">
+    </form>
+
+<!--
     <div class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
         <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ZXsQAXx_ao0" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
         </p>
     </div>
-
+-->
 
     {% if user.is_authenticated %}
     <p>Welcome, {{ user.username }} !</p>
