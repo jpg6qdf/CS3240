@@ -1,0 +1,12 @@
+{% extends 'fitapp/base.html' %}
+
+{% block content%}
+<h2>Progress Bar Test</h2>
+
+<!-- <p>{{ user.user.value }}</p>
+<p>{{ user.username }}</p> -->
+
+<label for="bar">Current Progress:</label>
+<progress id="bar" value="{{ user.user.value }}" max="100"> {{ user.user.value }}% </progress>
+
+{% endblock %}
