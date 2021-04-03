@@ -1,0 +1,13 @@
+{% extends 'fitapp/base.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+
+{% block content%}
+<form action="/fitapp/Logs/" method="post">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    <input type="submit" value="Submit">
+</form>
+{% endblock %}

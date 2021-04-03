@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
 
     'fitapp',
+    'bootstrap4'
 ]
 
 MIDDLEWARE = [
