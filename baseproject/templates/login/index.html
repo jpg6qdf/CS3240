@@ -10,7 +10,9 @@
 
 <body>
     <nav class="navbar navbar-light bg-info" style="margin: 0px 0px 10px 0px;">
-        <span class="navbar-brand mb-0 h1">Fitter Late Than Never</span>
+        <a href="index.html">
+            <span class="navbar-brand mb-0 h1">Fitter Late Than Never</span>
+        </a>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
@@ -33,6 +35,12 @@
         <a class="btn btn-primary" href="{% provider_login_url 'google' %}">Login with Google</a>
     </div>
     {% endif %}
+
+    <div class="text=center jumbotron">
+        <a href="/fitapp/Logs">
+            Logs here
+        </a>
+    </div>
 
 </body>
 
