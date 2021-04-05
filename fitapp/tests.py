@@ -1,6 +1,6 @@
 from django.test import TestCase
 from fitapp.models import User, Logs
-from django.contribauth.models import User
+from django.contrib.auth.models import User
 import users.views as views
 
 # Create your tests here.
