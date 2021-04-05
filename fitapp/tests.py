@@ -10,8 +10,8 @@ class DummyTestCase(TestCase):
         # self.user_1 = User.objects.create_user(username="test", email='test@gmail.com', password='test')
         self.logs_1 = Logs.objects.create(exercise="running", date="4/5/2021", duration="30 minutes", intensity="medium", area="legs")
 
-    def test_dummy_test_case(self):
-        self.assertEqual(1, 1)
+    # def test_dummy_test_case(self):
+    #     self.assertEqual(1, 1)
 
     # def user_test_case(self):
     #     Test = User()
