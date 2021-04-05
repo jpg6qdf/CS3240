@@ -1,0 +1,18 @@
+{% extends 'fitapp/base.html' %}
+
+{% block content%}
+<h2>Progress Bar Test</h2>
+
+<!-- <p>{{ user.user.current }}</p>
+<p>{{ user.username }}</p> 
+
+Eventually everything below (label and progress tags) will just be 2 lines in whatever html file we decide to put the progress bar in (probably the user profile page).
+This progress.html file won't be used, just here for testing and viewing purposes. Keep the file for testing, but don't link anywhere on final project page.
+
+user.user.current: first "user" is the built in django user. second "user" is the "user" variable in models.py. "current" is the bar part of the progress bar.
+-->
+
+<label for="bar">Current Progress:</label>
+<progress id="bar" value="{{ user.user.current }}" max="100"> {{ user.user.current }}% </progress>
+
+{% endblock %}
