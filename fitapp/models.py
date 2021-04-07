@@ -10,6 +10,8 @@ class User(models.Model):
     user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
     current = models.IntegerField(default=0) # bar part of progress bar
     maximum = models.IntegerField(default=100) # maximum length bar can be
+    def __str__(self):
+        return f'{self.user.username} Profile'
 
 # logs model
 class Logs(models.Model):
@@ -21,5 +23,3 @@ class Logs(models.Model):
     ## can include other relevant info we want to encourage
     def __str__(self):
         return self.date + ":" + self.exercise + "\n"
-
-    
