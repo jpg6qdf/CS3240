@@ -14,10 +14,10 @@ before_script:
 - psql -c 'CREATE DATABASE "fitapp" OWNER fit_admin;' -U postgres 
 - psql -c 'GRANT ALL PRIVILEGES ON DATABASE "fitapp" to fit_admin;' -U postgres
 script:
-- python manage.py makemigrations 
-- python manage.py migrate 
-- python manage.py collectstatic --noinput
-- python manage.py test
+- python3 manage.py makemigrations 
+- python3 manage.py migrate 
+- python3 manage.py collectstatic --noinput
+- python3 manage.py test
 deploy:
   provider: heroku
   api_key:
