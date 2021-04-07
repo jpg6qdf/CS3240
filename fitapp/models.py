@@ -7,7 +7,7 @@ from django.utils import timezone
 
 # Create your models here.
 class User(models.Model):
-    user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING) # comment
     current = models.IntegerField(default=0) # bar part of progress bar
     maximum = models.IntegerField(default=100) # maximum length bar can be
 
