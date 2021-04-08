@@ -44,5 +44,6 @@ def setCurrent(request):
 def Achievements(request):
     if request.method == 'POST':
         return HttpResponseRedirect('/')
-
-    return render(request, 'fitapp/achievements.html')
+    else:
+        num = user.user.level + 10
+    return render(request, 'fitapp/achievements.html', {'num': num})
