@@ -41,5 +41,8 @@ def setCurrent(request):
 
     user.user.current.update_level()
 
-class Achievements(TemplateView):
-    template_name = 'fitapp/achievements.html'
+def Achievements(request):
+    if request.method == 'POST':
+        return HttpResponseRedirect('/')
+
+    return render(request, 'fitapp/achievements.html')
