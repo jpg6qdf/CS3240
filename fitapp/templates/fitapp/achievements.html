@@ -1,24 +1,24 @@
 {% extends 'fitapp/base.html' %}
-
-<!DOCTYPE html>
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+{% block content%}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        /* Create two equal columns that floats next to each other */
-.column {
-  float: left;
-  width: 50%;
-  padding: 10px;
-}
-
-/* Clear floats after the columns */
-.row:after {
-  content: "";
-  display: table;
-  clear: both;
-}
+        .column {
+          float: left;
+          width: 50%;
+          padding: 10px;
+        }
+        .row:after {
+          content: "";
+          display: table;
+          clear: both;
+        }
     </style>
 </head>
 <body>
@@ -51,3 +51,4 @@
 </div>
 </body>
 </html>
+{% endblock %}
