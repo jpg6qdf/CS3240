@@ -45,6 +45,7 @@ def Achievements(request):
     if request.method == 'POST':
         return HttpResponseRedirect('/')
     else:
-        num = User._meta.get_field("level")
+        field_object = User._meta.get_field("level")
+        num = field_object.value_from_object(user)
 
     return render(request, 'fitapp/achievements.html', {'num': num})
