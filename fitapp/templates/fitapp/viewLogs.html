@@ -1,0 +1,9 @@
+{% extends 'fitapp/base.html' %}
+
+{% block content%}
+{%for whatever in logs%}
+<tr>
+    <td>{{whatever.exercise}}</td>
+</tr>
+{%endfor%}
+{% endblock %}

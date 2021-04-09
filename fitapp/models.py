@@ -7,7 +7,7 @@ from django.utils import timezone
 
 # Create your models here.
 class User(models.Model):
-    user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    user = models.OneToOneField(User, on_delete=models.DO_NOTHING) #change 123
     current = models.IntegerField(default=0) # bar part of progress bar
     maximum = models.IntegerField(default=100) # maximum length bar can be
     level = models.IntegerField(default=0)
@@ -15,10 +15,10 @@ class User(models.Model):
     def __str__(self):
         return f'{self.user.username} Profile'
 
-    def update_level(self):
-        if current >= maximum:
-            current = current - 100
-            level += 1
+    # def update_level(self):
+    #     if current >= maximum:
+    #         current = current - 100
+    #         level += 1
 
 # logs model
 
