@@ -21,8 +21,14 @@ class User(models.Model):
             level += 1
 
 # logs model
+
+exercise_choices = (
+    ('push ups', 'PUSH UPS'),
+    ('running', 'RUNNING'),
+)
+
 class Logs(models.Model):
-    exercise = models.CharField(max_length=200)#, help_text="title.")
+    exercise = models.CharField(max_length=200, choices = exercise_choices, default ='push ups')#, help_text="title.")
     date = models.CharField(max_length=200)#, help_text="text.")      #could be slider, buttons, etc
     duration = models.CharField(max_length=200)#, help_text="text.")      #could be slider, buttons, etc.        ##also includes reps.
     intensity = models.CharField(max_length=200)#, help_text="text.")     #could be slider, buttons, etc

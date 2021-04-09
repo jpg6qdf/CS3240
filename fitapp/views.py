@@ -44,8 +44,9 @@ def setCurrent(request):
 def Achievements(request):
     if request.method == 'POST':
         return HttpResponseRedirect('/')
-    else:
-        field_object = User._meta.get_field("level")
-        num = field_object.value_from_object(User.objects.get(id=request.user.id))
+    #else:
 
-    return render(request, 'fitapp/achievements.html', {'num': num})
+        # field_object = User._meta.get_field("level")
+        # num = field_object.value_from_object(User.objects.get(id=request.user.id))
+
+    return render(request, 'fitapp/achievements.html')
