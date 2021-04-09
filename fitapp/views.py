@@ -6,7 +6,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader
 from django.urls import reverse
 from django.utils import timezone
-from .models import Logs
+from .models import Logs, User
 from .forms import LogsForm
 
 # Create your views here.
@@ -36,3 +36,17 @@ def Logs(request): ##doesn't need index. does have list though. Can be a generic
     else:
         form = LogsForm()
     return render(request, 'fitapp/Logs.html', {'form': form})
+
+def setCurrent(request):
+
+    user.user.current.update_level()
+
+def Achievements(request):
+    if request.method == 'POST':
+        return HttpResponseRedirect('/')
+    #else:
+
+        # field_object = User._meta.get_field("level")
+        # num = field_object.value_from_object(User.objects.get(id=request.user.id))
+
+    return render(request, 'fitapp/achievements.html')

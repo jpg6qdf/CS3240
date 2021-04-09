@@ -1,0 +1,44 @@
+{% extends 'fitapp/base.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+{% block content%}
+<h1> Achievements </h1>
+
+<ul class="list-group">
+    <li class="list-group-item">
+        <h3>Push-ups!</h3>
+        <p>To earn this achievement, must finish {{ num }} minutes of push-ups!</p>
+        <div class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
+            <iframe width="1800" height="806" src="https://www.youtube.com/embed/4hCISQd_2Zk" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+        <input type="submit" value="submit">
+    </li>
+
+    <li class="list-group-item">
+        <h3>Chest flies!</h3>
+        <p>To earn this achievement, must finish {{ user.user.level }} chest flies!</p>
+        <div class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
+            <iframe width="1800" height="806" src="https://www.youtube.com/embed/cIRGs6uFHak" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+    </li>
+
+    <li class="list-group-item">
+        <h3>Dumbell Rows!</h3>
+        <p>To earn this achievement, must finish {{ user.user.level }} dumbell rows!</p>
+        <div class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
+            <iframe width="1904" height="806" src="https://www.youtube.com/embed/FXmzkvMH7SE" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+    </li>
+
+</ul>
+
+
+{% endblock %}
