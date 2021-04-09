@@ -20,14 +20,15 @@ class ProgressBar(TemplateView):
 
 
 
-def Logs(request): ##doesn't need index. does have list though. Can be a generic detailview.
+def LogReq(request): ##doesn't need index. does have list though. Can be a generic detailview.
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = LogsForm(request.POST)
         # check whether it's valid:
         if form.is_valid():
             #form.save()
-
+            log = Logs(exercise=form.cleaned_data['exercise'],date=form.cleaned_data['date'], duration=form.cleaned_data['duration'],intensity=form.cleaned_data['intensity'],area=form.cleaned_data['area'])
+            log.save()
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
@@ -36,3 +37,13 @@ def Logs(request): ##doesn't need index. does have list though. Can be a generic
     else:
         form = LogsForm()
     return render(request, 'fitapp/Logs.html', {'form': form})
+
+def viewLogs(request):
+    template = loader.get_template('fitapp/viewLogs.html')
+
+    if request.method != 'GET':
+        raise Exception('Should be a GET request')
+    
+    logs = Logs.objects.all()
+    context = {'logs' : logs}
+    return HttpResponse(template.render(context, request))
