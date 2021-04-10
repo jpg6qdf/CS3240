@@ -61,5 +61,6 @@ def update(request, user_id):
         user = User.objects.get(pk=user_id)
         user.profile.current = user.profile.current + 10
         user.save()
+        return HttpResponseRedirect(reverse('fitapp:achievements'))
     except (KeyError):
         return HttpResponseRedirect(reverse('fitapp:achievements'))
