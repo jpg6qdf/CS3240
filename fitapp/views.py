@@ -57,10 +57,7 @@ def Achievements(request):
     return render(request, 'fitapp/achievements.html', {'num': num})
 
 def update(request, user_id):
-    try:
-        user = User.objects.get(pk=user_id)
-        user.profile.current = user.profile.current + 10
-        user.save()
-        return render(request, 'fitapp/achievements.html')
-    except (KeyError):
-        return render(request, 'fitapp/achievements.html')
+    user = User.objects.get(pk=user_id)
+    user.profile.current = user.profile.current + 10
+    user.save()
+    return render(request, 'fitapp/achievements.html')
