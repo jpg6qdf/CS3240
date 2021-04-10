@@ -5,7 +5,7 @@ from django.dispatch import receiver
 
 # Create your models here.
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.DO_NOTHING)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     level = models.IntegerField(default=0)
     current = models.IntegerField(default=0) # bar part of progress bar
     maximum = models.IntegerField(default=100) # maximum length bar can be
