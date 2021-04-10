@@ -7,6 +7,7 @@ from django.utils import timezone
 from .models import Logs, Profile, User
 from .forms import LogsForm
 from django.contrib.auth.backends import BaseBackend
+from django.db.models import F
 
 # Create your views here.
 
@@ -58,6 +59,6 @@ def Achievements(request):
 
 def update(request, user_id):
     user = User.objects.get(pk=user_id)
-    user.profile.current = 10
-    user.save(update_fields=['current'])
+    user.profile.current = F('current') + 10
+    user.save()
     return render(request, 'fitapp/achievements.html')
