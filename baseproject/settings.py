@@ -87,10 +87,10 @@ WSGI_APPLICATION = 'baseproject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'd1cupm8dc098gj',
-        'USER': 'bbmcmvrfpaacem',
-        'PASSWORD': '00ada4a13531428b738a578cd901929cbb0b531d7d24ec4c601628d051cd3830',
-        'HOST': 'ec2-52-23-190-126.compute-1.amazonaws.com',
+        'NAME': 'fitapp',
+        'USER': 'fit_admin',
+        'PASSWORD': 'fitapp',
+        'HOST': '127.0.0.1',
         'PORT': '5432',
     }
 }

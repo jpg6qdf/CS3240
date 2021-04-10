@@ -3,7 +3,7 @@ from fitapp.models import User, Logs
 from django.contrib.auth.models import User
 import fitapp.views as views
 
-# Create your tests here.
+Create your tests here.
 class DummyTestCase(TestCase):
     def setUp(self):
         x = 1

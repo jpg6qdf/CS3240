@@ -39,17 +39,17 @@ def LogReq(request): ##doesn't need index. does have list though. Can be a gener
     return render(request, 'fitapp/Logs.html', {'form': form})
 
 def setCurrent(request):
-
     user.user.current.update_level()
 
 def Achievements(request):
     if request.method == 'POST':
         return HttpResponseRedirect('/')
     else:
-         field_object = User._meta.get_field("maximum")
-         num = field_object.value_from_object(User.objects.get(id=request.user.id))
+        field_object = User._meta.get_field("maximum")
+        num = field_object.value_from_object(User.objects.get(id=request.user.id))
 
     return render(request, 'fitapp/achievements.html')
+
 def viewLogs(request):
     template = loader.get_template('fitapp/viewLogs.html')
 
