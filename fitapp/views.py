@@ -1,18 +1,16 @@
-from .models import User 
-from django.views import generic
 from django.views.generic.base import TemplateView
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader
 from django.urls import reverse
 from django.utils import timezone
-from .models import Logs
+from .models import Logs, Profile, User
 from .forms import LogsForm
 
 # Create your views here.
 
 class ProgressBar(TemplateView):
-    model = User
+    model = Profile
     template_name = 'fitapp/progress.html'
     # def get(self, request):
     #     object1 = User.objects.all()
