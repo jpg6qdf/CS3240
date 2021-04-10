@@ -16,6 +16,7 @@
                     allowfullscreen></iframe>
         </div>
         <form method="post" novalidate>
+            {% csrf_token %}
             <button type="submit" class="btn btn-success">Achievement Done!</button>
         </form>
     </li>
@@ -41,7 +42,17 @@
     </li>
 
     <li class="list-group-item">
-        <h3>Dumbell Rows!</h3>
+        <h3>Bicep Curls!</h3>
+        <p>To earn this achievement, must finish {{ num }} dumbell rows!</p>
+        <div class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
+            <iframe width="1904" height="806" src="https://www.youtube.com/embed/FXmzkvMH7SE" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+    </li>
+
+    <li class="list-group-item">
+        <h3>Planks!</h3>
         <p>To earn this achievement, must finish {{ num }} dumbell rows!</p>
         <div class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
             <iframe width="1904" height="806" src="https://www.youtube.com/embed/FXmzkvMH7SE" title="YouTube video player"
