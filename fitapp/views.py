@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.utils import timezone
 from .models import Logs, Profile, User
 from .forms import LogsForm
+from django.contrib.auth.backends import BaseBackend
 
 # Create your views here.
 
@@ -45,3 +46,12 @@ def viewLogs(request):
     logs = Logs.objects.all()
     context = {'logs' : logs}
     return HttpResponse(template.render(context, request))
+
+def Achievements(request):
+    if request.method == 'POST':
+        return HttpResponseRedirect('/')
+    else:
+        user = request.user
+        num = user.profile.level + 10
+
+    return render(request, 'fitapp/achievements.html', {'num': num})
