@@ -58,7 +58,7 @@ def Achievements(request):
     return render(request, 'fitapp/achievements.html', {'num': num})
 
 def update(request, user_id):
-    user = User.objects.get(pk=user_id)
+    user = User.objects.get(name='b-08admin-again')
     user.profile.current = F('current') + 10
     user.save()
     return render(request, 'fitapp/achievements.html')
