@@ -55,3 +55,11 @@ def Achievements(request):
         num = user.profile.level + 10
 
     return render(request, 'fitapp/achievements.html', {'num': num})
+
+def update(request, user_id):
+    try:
+        user = User.objects.get(pk=user_id)
+        user.profile.current = user.profile.current + 10
+        user.save()
+    except (KeyError):
+        return HttpResponseRedirect(reverse('fitapp:achievements'))
