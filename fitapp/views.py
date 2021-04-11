@@ -4,8 +4,10 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader
 from django.urls import reverse
 from django.utils import timezone
-from .models import Logs, Profile
+from .models import Logs, Profile, User
 from .forms import LogsForm
+from django.contrib.auth.backends import BaseBackend
+from django.db.models import F
 
 # Create your views here.
 
@@ -45,6 +47,34 @@ def viewLogs(request):
     logs = Logs.objects.all()
     context = {'logs' : logs}
     return HttpResponse(template.render(context, request))
+
+def Achievements(request):
+    try:
+        user = request.user
+        num = user.profile.level + 10
+    except User.DoesNotExist:
+        raise Http404("Question does not exist")
+    return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
+
+    # if request.method == 'POST':
+    #     return HttpResponseRedirect('/')
+    # else:
+    #     user = request.user
+    #     num = user.profile.level + 10
+
+    # return render(request, 'fitapp/achievements.html', {'num': num})
+
+def update(request, user_id):
+    user = User.objects.get(pk=user_id)
+    if user.profile.current >= 100:
+        user.profile.current = user.profile.current - 100
+        user.profile.level = user.profile.level + 1
+        user.save()
+    else:
+        user.profile.current = user.profile.current + 10
+        user.save()
+    num = user.profile.level + 10
+    return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
 
 def log(request, logs_id):
     template = loader.get_template('fitapp/log.html')
