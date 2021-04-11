@@ -29,6 +29,6 @@ class Logs(models.Model):
     intensity = models.CharField(max_length=200)#, help_text="text.")     #could be slider, buttons, etc
     area = models.CharField(max_length=200)#, help_text="text.")     #could be slider, buttons, etc
     ## can include other relevant info we want to encourage
-    # owner = models.ForeignKey(siteUser, on_delete=models.CASCADE, null=True)
+    #owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.date + ":" + self.exercise + "\n"
