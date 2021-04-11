@@ -3,7 +3,8 @@
 {% block content%}
 {%for whatever in logs%}
 <tr>
-    <td>{{whatever.exercise}}</td>
+    <td>
+        <a href="/fitapp/viewLogs/{{whatever.id}}">{{whatever.exercise}}</a></td><br>
 </tr>
 {%endfor%}
 {% endblock %}

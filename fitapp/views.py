@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader
 from django.urls import reverse
 from django.utils import timezone
-from .models import Logs, Profile, User
+from .models import Logs, Profile
 from .forms import LogsForm
 
 # Create your views here.
@@ -44,4 +44,10 @@ def viewLogs(request):
     
     logs = Logs.objects.all()
     context = {'logs' : logs}
+    return HttpResponse(template.render(context, request))
+
+def log(request, logs_id):
+    template = loader.get_template('fitapp/log.html')
+    log_accessed = get_object_or_404(Logs, pk=logs_id)
+    context = {'log' : log_accessed}
     return HttpResponse(template.render(context, request))

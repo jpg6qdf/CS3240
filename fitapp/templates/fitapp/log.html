@@ -1,0 +1,40 @@
+{% extends 'fitapp/base.html' %}
+
+{% block head %}
+<meta property="og:url"           content="https://project-b-08.herokuapp.com/" />
+<meta property="og:title"         content="Fitter Late Than Never" />
+<meta property="og:description"   content="Share your recent workout today!" />
+<meta property="og:image"         content="https://images.emojiterra.com/twitter/512px/1f4aa.png" />
+{% endblock %}
+
+{% block content %}
+<tl class="h1">Log Details</tl>
+    <br>
+    <br>
+    <tr>Exercise: {{log.exercise}}</tr>
+    <br>
+    <tr>Date: {{log.date}}</tr>
+    <br>
+    <tr>Duration: {{log.duration}}</tr>
+    <br>
+    <tr>Intensity: {{log.intensity}}</tr>
+    <br>
+    <tr>Area: {{log.area}}</tr>
+    <br>
+    <tr>Owner: {{log.owner.username}}</tr>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+var js, fjs = d.getElementsByTagName(s)[0];
+if (d.getElementById(id)) return;
+js = d.createElement(s); js.id = id;
+js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<!-- Your share button code -->
+<div class="fb-share-button" 
+data-href="/fitapp/viewLogs/{{log.id}}" 
+data-layout="button_count">
+</div>
+{% endblock %}

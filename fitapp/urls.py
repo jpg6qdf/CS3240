@@ -7,4 +7,5 @@ urlpatterns = [
     path('progress/', views.ProgressBar.as_view(), name='progress'),
     path('Logs/', views.LogReq, name='Logs'),
     path('viewLogs/', views.viewLogs, name='viewLogs'),
+    path('viewLogs/<int:logs_id>', views.log, name='log')
 ]
