@@ -7,7 +7,7 @@ import fitapp.views as views
 class DummyTestCase(TestCase):
     def setUp(self):
         x = 1
-        self.logs_1 = Logs.objects.create(exercise="running", date="2021-04-11", duration="30 minutes", intensity="medium")
+        self.logs_1 = Logs.objects.create(exercise="running", date="2021-04-11", duration="30", intensity="moderate")
 
     def test_dummy_test_case(self):
         # self.assertEqual(1, 1)
