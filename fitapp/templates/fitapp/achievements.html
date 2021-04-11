@@ -1,0 +1,140 @@
+{% extends 'fitapp/base.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+{% block content%}
+<h1 style="text-align: center"> Achievements </h1>
+<ul class="list-group">
+    <li class="list-group-item">
+        <h3 style="text-align: center" >Push-ups!</h3>
+        <p style="text-align: center" >You can earn 10 XP for completing this achievement!</p>
+        <p style="text-align: center"> After you finish {{ num }}  minutes of push-ups, click the button below to earn this achievement!</p>
+        <div style="text-align: center" class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
+            <iframe width="1800" height="806" src="https://www.youtube.com/embed/4hCISQd_2Zk" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+        <br>
+        <form action="{% url 'fitapp:update' user.id %}" style="text-align: center" method="update" novalidate>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Achievement Done!</button>
+        </form>
+    </li>
+
+    <li style="text-align: center" class="list-group-item">
+        <h3>Chest flies!</h3>
+        <p>You can earn 10 XP for completing this achievement!</p>
+        <p> After you finish {{ num }}  minutes of chest flies, click the button below to earn this achievement!</p>
+        <div style="text-align: center" class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
+            <iframe width="1800" height="806" src="https://www.youtube.com/embed/cIRGs6uFHak" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+        <br>
+        <form action="{% url 'fitapp:update' user.id %}" style="text-align: center" method="update" novalidate>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Achievement Done!</button>
+        </form>
+    </li>
+
+    <li style="text-align: center" class="list-group-item">
+        <h3>Dumbell Rows!</h3>
+        <p>You can earn 10 XP for completing this achievement!</p>
+        <p> After you finish {{ num }}  minutes of dumbell rows, click the button below to earn this achievement!</p>
+        <div style="text-align: center" class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
+            <iframe width="1904" height="806" src="https://www.youtube.com/embed/FXmzkvMH7SE" title="YouTube video player"
+                    frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+        </div>
+        <br>
+        <form action="{% url 'fitapp:update' user.id %}" style="text-align: center" method="update" novalidate>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Achievement Done!</button>
+        </form>
+    </li>
+
+    <li style="text-align: center" class="list-group-item">
+        <h3>Bicep Curls!</h3>
+        <p>You can earn 10 XP for completing this achievement!</p>
+        <p> After you finish {{ num }}  minutes of bicep curls, click the button below to earn this achievement!</p>
+        <div style="text-align: center" style="text-align: center" class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
+            <iframe width="1904" height="806" src="https://www.youtube.com/embed/41zei-ocKGw" title="YouTube video player" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+        </div>
+        <br>
+        <form action="{% url 'fitapp:update' user.id %}" style="text-align: center" method="update" novalidate>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Achievement Done!</button>
+        </form>
+    </li>
+
+    <li style="text-align: center" class="list-group-item">
+        <h3>Planks!</h3>
+        <p>You can earn 10 XP for completing this achievement!</p>
+        <p>After you finish {{ num }}  minutes of planks, click the button below to earn this achievement!</p>
+        <div style="text-align: center" class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
+            <iframe width="1904" height="806" src="https://www.youtube.com/embed/fLHiWMbf1OM" title="YouTube video player" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+        </div>
+        <br>
+        <form action="{% url 'fitapp:update' user.id %}" style="text-align: center" method="update" novalidate>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Achievement Done!</button>
+        </form>
+    </li>
+
+    <li style="text-align: center" class="list-group-item">
+        <h3>Situps!</h3>
+        <p>You can earn 10 XP for completing this achievement!</p>
+        <p>After you finish {{ num }}  minutes of situps, click the button below to earn this achievement!</p>
+        <div style="text-align: center" class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
+            <iframe width="1904" height="806" src="https://www.youtube.com/embed/FGqvlb20G90" title="YouTube video player" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+        </div>
+        <br>
+        <form action="{% url 'fitapp:update' user.id %}" style="text-align: center" method="update" novalidate>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Achievement Done!</button>
+        </form>
+    </li>
+
+    <li style="text-align: center" class="list-group-item">
+        <h3>Lunges!</h3>
+        <p>You can earn 10 XP for completing this achievement!</p>
+        <p>After you finish {{ num }}  minutes of lunges, click the button below to earn this achievement!</p>
+        <div style="text-align: center" class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
+            <iframe width="1904" height="806" src="https://www.youtube.com/embed/OHtT-smKnfA" title="YouTube video player" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+        </div>
+        <br>
+        <form action="{% url 'fitapp:update' user.id %}" style="text-align: center" method="update" novalidate>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Achievement Done!</button>
+        </form>
+    </li>
+
+    <li style="text-align: center" class="list-group-item">
+        <h3>Squats!</h3>
+        <p>You can earn 10 XP for completing this achievement!</p>
+        <p>After you finish {{ num }}  minutes of squats, click the button below to earn this achievement!</p>
+        <div style="text-align: center" class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
+            <iframe width="1904" height="806" src="https://www.youtube.com/embed/2dgneEJ0yjs" title="YouTube video player" 
+            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            allowfullscreen></iframe>
+        </div>
+        <br>
+        <form action="{% url 'fitapp:update' user.id %}" style="text-align: center" method="update" novalidate>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success">Achievement Done!</button>
+        </form>
+    </li>
+
+</ul>
+
+
+{% endblock %}
