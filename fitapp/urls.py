@@ -8,5 +8,5 @@ urlpatterns = [
     path('Logs/', views.LogReq, name='Logs'),
     path('viewLogs/', views.viewLogs, name='viewLogs'),
     path('achievements/', views.Achievements, name='achievements'),
-    path('achievements/update/', views.update, name='update'),
+    path('achievements/update/<int:user_id>', views.update, name='update'),
 ]

@@ -49,16 +49,29 @@ def viewLogs(request):
     return HttpResponse(template.render(context, request))
 
 def Achievements(request):
-    if request.method == 'POST':
-        return HttpResponseRedirect('/')
-    else:
+    try:
         user = request.user
         num = user.profile.level + 10
+    except User.DoesNotExist:
+        raise Http404("Question does not exist")
+    return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
 
-    return render(request, 'fitapp/achievements.html', {'num': num})
+    # if request.method == 'POST':
+    #     return HttpResponseRedirect('/')
+    # else:
+    #     user = request.user
+    #     num = user.profile.level + 10
 
-def update(request, pk):
-    user = User.objects.get(pk=pk)
-    user.profile.current += 10
-    user.save()
-    return render(request, 'fitapp/achievements.html')
+    # return render(request, 'fitapp/achievements.html', {'num': num})
+
+def update(request, user_id):
+    user = User.objects.get(pk=user_id)
+    if user.profile.current >= 100:
+        user.profile.current = user.profile.current - 100
+        user.profile.level = user.profile.level + 1
+        user.save()
+    else:
+        user.profile.current = user.profile.current + 10
+        user.save()
+    num = user.profile.level + 10
+    return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
