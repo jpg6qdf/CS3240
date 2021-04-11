@@ -16,7 +16,7 @@ class LogsForm(forms.ModelForm):
     ## can include other relevant info we want to encourage
     class Meta:
         model = Logs
-        fields = ('exercise', 'date', 'duration', 'intensity')
+        fields = ('exercise', 'date', 'duration', 'intensity', 'area')
         widgets = {
             'date': DateInput(),
             'duration': RangeInput(attrs={'max': 100})
