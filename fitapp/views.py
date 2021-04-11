@@ -75,3 +75,9 @@ def update(request, user_id):
         user.save()
     num = user.profile.level + 10
     return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
+
+def log(request, logs_id):
+    template = loader.get_template('fitapp/log.html')
+    log_accessed = get_object_or_404(Logs, pk=logs_id)
+    context = {'log' : log_accessed}
+    return HttpResponse(template.render(context, request))
