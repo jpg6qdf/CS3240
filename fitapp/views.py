@@ -59,6 +59,6 @@ def Achievements(request):
 
 def update(request, pk):
     user = User.objects.get(pk=pk)
-    user.profile.current = F('current') + 10
+    user.profile.current += 10
     user.save()
     return render(request, 'fitapp/achievements.html')
