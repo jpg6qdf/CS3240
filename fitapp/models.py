@@ -46,9 +46,12 @@ class Logs(models.Model):
     date = models.DateField()#, help_text="text.")      #could be slider, buttons, etc
     #duration = models.CharField(max_length=200)#, help_text="text.")      #could be slider, buttons, etc.        ##also includes reps.
     
-    duration = models.PositiveSmallIntegerField( name=('duration'), default=DEFAULT_duration,validators=[MinValueValidator(MIN_duration), MaxValueValidator(MAX_duration)])
-        #_('duration'), 
+    #duration = models.NumberInput
+    
     intensity = models.CharField(max_length=10, choices=INTENSITY_CHOICES, default='light')#, help_text="text.")     #could be slider, buttons, etc
+    
+    duration = models.PositiveSmallIntegerField( name='duration', default=DEFAULT_duration,validators=[MinValueValidator(MIN_duration), MaxValueValidator(MAX_duration)])
+    
     #area = models.CharField(max_length=200)#, help_text="text.")     #could be slider, buttons, etc
     ## can include other relevant info we want to encourage
     def __str__(self):
