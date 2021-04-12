@@ -13,6 +13,6 @@ user.user.current: first "user" is the built in django user. second "user" is th
 -->
 
 <label for="bar">Current Progress:</label>
-<progress id="bar" value="{{ user.user.current }}" max="100"> {{ user.user.current }}% </progress>
+<progress id="bar" value="{{ user.profile.current }}" max="100"> {{ user.profile.current }}% </progress>
 
 {% endblock %}
