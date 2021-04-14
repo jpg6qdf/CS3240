@@ -49,8 +49,8 @@ def viewLogs(request):
 
     if request.method != 'GET':
         raise Exception('Should be a GET request')
-    
-    logs = Logs.objects.filter(owner=request.user.profile).all()
+    logs = Logs.objects.all()
+    #my_logs = Logs.objects.filter(owner=request.user.profile).all() # If we want logs to be viewable only to their poster
     context = {'logs' : logs}
     return HttpResponse(template.render(context, request))
 
