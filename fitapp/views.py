@@ -27,7 +27,13 @@ def LogReq(request): ##doesn't need index. does have list though. Can be a gener
         # check whether it's valid:
         if form.is_valid():
             #form.save()
-            log = Logs(exercise=form.cleaned_data['exercise'],date=form.cleaned_data['date'], duration=form.cleaned_data['duration'],intensity=form.cleaned_data['intensity'],area=form.cleaned_data['area'])
+            log = Logs(exercise=form.cleaned_data['exercise'],
+                date=form.cleaned_data['date'], 
+                duration=form.cleaned_data['duration'],
+                intensity=form.cleaned_data['intensity'],
+                area=form.cleaned_data['area'],
+                owner=request.user.profile
+            )
             log.save()
             # process the data in form.cleaned_data as required
             # ...
@@ -44,7 +50,7 @@ def viewLogs(request):
     if request.method != 'GET':
         raise Exception('Should be a GET request')
     
-    logs = Logs.objects.all()
+    logs = Logs.objects.filter(owner=request.user.profile).all()
     context = {'logs' : logs}
     return HttpResponse(template.render(context, request))
 
