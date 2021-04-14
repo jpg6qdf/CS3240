@@ -8,7 +8,7 @@
 {% endblock %}
 
 {% block content %}
-<tl class="h1">Log Details</tl>
+<tl class="h1">{{log.owner.user.first_name}}'s {{log.date}} {{log.area}} Workout</tl>
     <br>
     <br>
     <tr>Exercise: {{log.exercise}}</tr>
