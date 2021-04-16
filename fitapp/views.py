@@ -9,7 +9,7 @@ from .forms import LogsForm
 from django.contrib.auth.backends import BaseBackend
 from django.db.models import F
 
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
 class ProgressBar(TemplateView):
     model = Profile
@@ -54,22 +54,6 @@ def viewLogs(request):
     context = {'logs' : logs}
     return HttpResponse(template.render(context, request))
 
-def Achievements(request):
-    try:
-        user = request.user
-        num = user.profile.level + 10
-    except User.DoesNotExist:
-        raise Http404("Question does not exist")
-    return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
-
-    # if request.method == 'POST':
-    #     return HttpResponseRedirect('/')
-    # else:
-    #     user = request.user
-    #     num = user.profile.level + 10
-
-    # return render(request, 'fitapp/achievements.html', {'num': num})
-
 def update(request, user_id):
     user = User.objects.get(pk=user_id)
     if user.profile.current >= 100:
@@ -87,3 +71,12 @@ def log(request, logs_id):
     log_accessed = get_object_or_404(Logs, pk=logs_id)
     context = {'log' : log_accessed}
     return HttpResponse(template.render(context, request))
+
+@login_required(login_url='/')
+def Achievements(request):
+    try:
+        user = request.user
+        num = user.profile.level + 10
+    except User.DoesNotExist:
+        raise Http404("Question does not exist")
+    return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
