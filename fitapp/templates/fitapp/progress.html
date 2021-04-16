@@ -12,7 +12,14 @@ This progress.html file won't be used, just here for testing and viewing purpose
 user.user.current: first "user" is the built in django user. second "user" is the "user" variable in models.py. "current" is the bar part of the progress bar.
 -->
 
-<label for="bar">Current Progress:</label>
-<progress id="bar" value="{{ user.profile.current }}" max="100"> {{ user.profile.current }}% </progress>
+<!-- <label for="bar">Current Progress:</label>
+<progress id="bar" value="{{ user.profile.current }}" max="100"> {{ user.profile.current }}% </progress> -->
+
+<div class="progress">
+    <div class="progress-bar progress-bar-striped active" role="progressbar"
+    aria-valuenow="{{ user.profile.current }}" aria-valuemin="0" aria-valuemax="100" style="width:40%">
+      {{ user.profile.current }} %
+    </div>
+  </div>
 
 {% endblock %}
