@@ -4,8 +4,8 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader
 from django.urls import reverse
 from django.utils import timezone
-from .models import Logs, Profile, User
-from .forms import LogsForm
+from .models import Logs, Profile, User, Comment
+from .forms import LogsForm, CommentForm
 from django.contrib.auth.backends import BaseBackend
 from django.db.models import F
 
@@ -85,5 +85,32 @@ def update(request, user_id):
 def log(request, logs_id):
     template = loader.get_template('fitapp/log.html')
     log_accessed = get_object_or_404(Logs, pk=logs_id)
-    context = {'log' : log_accessed}
+    log_comments = Comment.objects.filter(post=log_accessed)
+    context = {'log' : log_accessed, 'comments': log_comments}
+
+    
     return HttpResponse(template.render(context, request))
+
+def post_detail(request, slug):
+    template_name = loader.get_template('fitapp/log.html')
+    post = get_object_or_404(Logs, slug=slug)
+    comments = post.comments.filter(active=True)
+    new_comment = None
+    # Comment posted
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.post = post
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+
+    return render(request, template_name, {'post': post,
+                                           'comments': comments,
+                                           'new_comment': new_comment,
+                                           'comment_form': comment_form})
