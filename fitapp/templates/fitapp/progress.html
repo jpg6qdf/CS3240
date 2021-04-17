@@ -1,4 +1,5 @@
 {% extends 'fitapp/base.html' %}
+{% load static %}
 
 {% block content%}
 <!-- <h2>Progress Bar Test</h2> -->
@@ -12,9 +13,22 @@ This progress.html file won't be used, just here for testing and viewing purpose
 -->
 <head>
     <style>
-    .center {
-      text-align: center;
-    }
+        /* Center: controls everything above the progress bar*/
+        .center {
+            text-align: center;
+        }
+        /* QuoteBox: Controls the box of quotes*/
+        .quoteBox {
+            margin: auto;
+            width: 75%;
+            border: 3px solid rgb(112, 110, 129);
+            padding: 10px;
+
+            font-family: monospace;
+            font-size: 20;
+            font-weight: bold;
+            color: rgb(49, 88, 216);
+        }
     </style>
 </head>
 
@@ -26,6 +40,7 @@ This progress.html file won't be used, just here for testing and viewing purpose
     <br>
 
     <h4>You are level: {{ user.profile.level }}</h4>
+    <!-- <img src="{% static 'fitapp/Fit_Cat.jpg' %}"> -->
 
     <br>
 
@@ -39,4 +54,24 @@ This progress.html file won't be used, just here for testing and viewing purpose
     </div>
   </div>
 
+  <br>
+  <br>
+
+<div class="quoteBox">
+    <div class="center">
+        <p>"It's not about how fast or how far you have to go. It's about
+            digging deep and pushing yourself to keep moving forward."
+        </p>
+        <br>
+        <p>"Don't just talk about it. Be about it."</p>
+        <br>
+        <p>"It's not until you get tired that you see how strong you really are."</p>
+        <br>
+        <p>"Motivate the mind and set the body free."</p>
+        <br>
+        <p>"Don't run from the work, feel the work."</p>
+    </div>
+</div>
+<br>
+<br>
 {% endblock %}
