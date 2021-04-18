@@ -91,9 +91,9 @@ def log(request, logs_id):
     
     return HttpResponse(template.render(context, request))
 
-def post_detail(request, slug):
+def post_detail(request, logs_id):
     template_name = loader.get_template('fitapp/log.html')
-    post = get_object_or_404(Logs, slug=slug)
+    post = get_object_or_404(Logs, pk=logs_id)
     comments = post.comments.filter(active=True)
     new_comment = None
     # Comment posted
@@ -109,8 +109,10 @@ def post_detail(request, slug):
             new_comment.save()
     else:
         comment_form = CommentForm()
+    context = {'log' : post, 'comments': comments}
 
-    return render(request, template_name, {'post': post,
+    return HttpResponse(template_name.render(context, request))
+    """ return render(request, template_name, {'post': post,
                                            'comments': comments,
                                            'new_comment': new_comment,
-                                           'comment_form': comment_form})
+                                           'comment_form': comment_form}) """

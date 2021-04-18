@@ -66,18 +66,17 @@
         </div>
         <div class="col-md-8 card mb-4  mt-3 ">
             <div class="card-body">
-                {% if new_comment %}
-                <div class="alert alert-success" role="alert">
-                    Your comment is awaiting moderation
-                </div>
-                {% else %}
                 <h3>Leave a comment</h3>
-                <form method="post" style="margin-top: 1.3em;">
+                <form action="{% url 'fitapp:post_detail' log.id%}" method="post" style="margin-top: 1.3em;">
                     {% csrf_token %}
-                    {{ comment_form.as_p }}
+                    <div class="form-group">
+                        <input class="form-control" type="text-area" placeholder="Title" name="name">
+                    </div>
+                    <div class="form-group">
+                        <textarea class="form-control" rows="5"  type="text-area" placeholder="Comment" name="body"></textarea>
+                    </div>
                     <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
                 </form>
-                {% endif %}
             </div>
         </div>
     </div>
