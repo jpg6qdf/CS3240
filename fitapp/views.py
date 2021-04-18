@@ -28,6 +28,7 @@ def LogReq(request): ##doesn't need index. does have list though. Can be a gener
         raise Http404("Question does not exist")
     return render(request, 'fitapp/Logs.html', {'user': user, 'form': form})
 
+@login_required(login_url='/')
 def updatelogs(request, user_id):
     user = User.objects.get(pk=user_id)
     if request.method == 'POST':
@@ -65,6 +66,7 @@ def updatelogs(request, user_id):
         form = LogsForm()
     return render(request, 'fitapp/Logs.html', {'form': form, 'user': user})
 
+@login_required(login_url='/')
 def viewLogs(request):
     template = loader.get_template('fitapp/viewLogs.html')
 
@@ -75,6 +77,7 @@ def viewLogs(request):
     context = {'logs' : logs}
     return HttpResponse(template.render(context, request))
 
+@login_required(login_url='/')
 def update(request, user_id):
     user = User.objects.get(pk=user_id)
     user.profile.current = user.profile.current + 10
@@ -85,6 +88,7 @@ def update(request, user_id):
     num = user.profile.level + 10
     return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
 
+@login_required(login_url='/')
 def log(request, logs_id):
     template = loader.get_template('fitapp/log.html')
     log_accessed = get_object_or_404(Logs, pk=logs_id)
