@@ -5,7 +5,7 @@
 {% bootstrap_messages %}
 
 {% block content%}
-<form action="/fitapp/Logs/" method="post">
+<form action="{% url 'fitapp:updatelogs' user.id %}" method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
     <input type="submit" value="Submit">

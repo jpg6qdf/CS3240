@@ -19,8 +19,17 @@ class ProgressBar(TemplateView):
     #     return 
 
 
-
+@login_required(login_url='/')
 def LogReq(request): ##doesn't need index. does have list though. Can be a generic detailview.
+    try:
+        user = request.user
+        form = LogsForm()
+    except User.DoesNotExist:
+        raise Http404("Question does not exist")
+    return render(request, 'fitapp/Logs.html', {'user': user, 'form': form})
+
+def updatelogs(request, user_id):
+    user = User.objects.get(pk=user_id)
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = LogsForm(request.POST)
@@ -35,6 +44,18 @@ def LogReq(request): ##doesn't need index. does have list though. Can be a gener
                 owner=request.user.profile
             )
             log.save()
+            user = User.objects.get(pk=user_id)
+            user.profile.current = user.profile.current + log.duration
+            if log.intensity == 'light':
+                user.profile.current = user.profile.current + 5
+            elif log.intensity == 'moderate':
+                user.profile.current = user.profile.current + 10
+            elif log.intensity == 'vigorous':
+                user.profile.current = user.profile.current + 15
+            if user.profile.current >= 100:
+                user.profile.current = user.profile.current - 100
+                user.profile.level = user.profile.level + 1
+            user.save()
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
@@ -42,7 +63,7 @@ def LogReq(request): ##doesn't need index. does have list though. Can be a gener
     # if a GET (or any other method) we'll create a blank form
     else:
         form = LogsForm()
-    return render(request, 'fitapp/Logs.html', {'form': form})
+    return render(request, 'fitapp/Logs.html', {'form': form, 'user': user})
 
 def viewLogs(request):
     template = loader.get_template('fitapp/viewLogs.html')
@@ -56,13 +77,11 @@ def viewLogs(request):
 
 def update(request, user_id):
     user = User.objects.get(pk=user_id)
+    user.profile.current = user.profile.current + 10
     if user.profile.current >= 100:
         user.profile.current = user.profile.current - 100
         user.profile.level = user.profile.level + 1
-        user.save()
-    else:
-        user.profile.current = user.profile.current + 10
-        user.save()
+    user.save()
     num = user.profile.level + 10
     return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
 
