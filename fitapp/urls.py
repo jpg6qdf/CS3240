@@ -10,5 +10,6 @@ urlpatterns = [
     path('achievements/', views.Achievements, name='achievements'),
     path('achievements/update/<int:user_id>', views.update, name='update'),
     path('viewLogs/<int:logs_id>', views.log, name='log'),
-    path('viewLogs/<int:logs_id>/comment', views.post_detail, name='post_detail')
+    path('viewLogs/<int:logs_id>/comment', views.post_detail, name='post_detail'),
+    path('Logs/updatelogs/<int:user_id>', views.updatelogs, name='updatelogs')
 ]
