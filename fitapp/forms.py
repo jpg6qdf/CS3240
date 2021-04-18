@@ -1,5 +1,5 @@
 from django import forms
-from .models import Logs
+from .models import Logs, Comment
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -21,3 +21,8 @@ class LogsForm(forms.ModelForm):
             'date': DateInput(),
             'duration': RangeInput(attrs={'max': 100})
         }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'body')
