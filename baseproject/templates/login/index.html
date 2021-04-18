@@ -12,6 +12,9 @@
 
 {% if user.is_authenticated %}
 <p>Welcome, {{ user.username }}!</p>
+<div class="text-center" style="margin: 10px 10px 10px 10px">
+    <a class="btn btn-primary" href="accounts/logout/">Logout with Google</a>
+</div>
 
 {% else %}
 <div class="text-center" style="margin: 10px 10px 10px 10px">
