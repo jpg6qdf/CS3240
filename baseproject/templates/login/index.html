@@ -2,6 +2,36 @@
 {% load socialaccount %}
 
 {% block content%}
+
+
+{% if user.is_authenticated %}
+<h3 style="text-align: center">Welcome to Fitter Later Than Never, {{ user.username }}!</h3>
+
+<h5 style="text-align: center">This is a fun exercise app where you can easily log in your workouts and achieve XP for doing exercise!</h5>
+    <ul>
+        <li>Go to the "Profile" Tab to check out your current XP and level!</li>
+        <li>
+            To track and share your latest workout, go to the "Submit Log" Tab and fill out the necessary information
+            <ul>
+                <li>You get XP based on the duration and intensity of your workout! </li>
+                <li>The longer and more intense your workout is, the more XP you get!</li>
+            </ul>
+        </li>
+        <li>
+            Go to the "View Logs" Tab to view your logs, other users' logs, and leave comments!
+        </li>
+        <li>
+            To earn more points or need ideas for more exercises, go to the "Achievements" Tab
+            <ul>
+                <li>Once you are done with an Achievement, click the "Achievement Done!" button to earn 10 XP!</li>
+            </ul>
+        </li>
+    </ul>
+
+    <div class="text-center" style="margin: 10px 10px 10px 10px">
+        <a class="btn btn-primary" href="accounts/logout/">Logout with Google</a>
+    </div>
+    
 <div class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ZXsQAXx_ao0" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -9,14 +39,9 @@
     </p>
 </div>
 
-
-{% if user.is_authenticated %}
-<p>Welcome, {{ user.username }}!</p>
-<div class="text-center" style="margin: 10px 10px 10px 10px">
-    <a class="btn btn-primary" href="accounts/logout/">Logout with Google</a>
-</div>
-
 {% else %}
+<h3 style="text-align: center">Welcome to Fitter Later Than Never!</h3>
+<h4 style="text-align:center">Login To Access the Website!</h4>
 <div class="text-center" style="margin: 10px 10px 10px 10px">
     <a class="btn btn-primary" href="{% provider_login_url 'google' %}">Login with Google</a>
 </div>
