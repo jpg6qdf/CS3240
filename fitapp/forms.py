@@ -1,5 +1,5 @@
 from django import forms
-from .models import Logs
+from .models import Logs, Comment
 
 class DateInput(forms.DateInput):
     input_type = 'date'
@@ -16,8 +16,13 @@ class LogsForm(forms.ModelForm):
     ## can include other relevant info we want to encourage
     class Meta:
         model = Logs
-        fields = ('exercise', 'date', 'intensity', 'area', 'duration')
+        fields = ('exercise', 'date', 'duration', 'intensity', 'area')
         widgets = {
             'date': DateInput(),
             'duration': forms.NumberInput(attrs={'max': '100', 'type':'range', 'step': '1', 'min': '0', 'id':'myRange'})
         }
+
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model = Comment
+        fields = ('name', 'body')

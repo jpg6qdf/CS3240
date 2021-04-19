@@ -5,30 +5,17 @@
 {% bootstrap_messages %}
 
 {% block content%}
-<form action="/fitapp/Logs/" method="post">
+<form action="{% url 'fitapp:updatelogs' user.id %}" method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
 
-    <!--
-        <input type="range" name="rangeInput" min="0" max="100" onchange="updateTextInput(this.value);">
-        <input type="text" id="textInput" value="">
-
-        function updateTextInput(val) {
-          document.getElementById('textInput').value=val; 
-        }
-    -->
-
     <div>
-        <!--<input type="range" min="0" step="1" max="100" value="50"  id="myRange">-->
-      
         <p>Minutes/Repetitions: <span id="demo"></span></p>
       </div>
-      
       <script>
       var slider = document.getElementById("myRange");
       var output = document.getElementById("demo");
       output.innerHTML = slider.value;
-      
       slider.oninput = function() {
         output.innerHTML = this.value;
       }

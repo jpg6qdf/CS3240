@@ -4,12 +4,12 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.template import loader
 from django.urls import reverse
 from django.utils import timezone
-from .models import Logs, Profile, User
-from .forms import LogsForm
+from .models import Logs, Profile, User, Comment
+from .forms import LogsForm, CommentForm
 from django.contrib.auth.backends import BaseBackend
 from django.db.models import F
 
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
 class ProgressBar(TemplateView):
     model = Profile
@@ -19,8 +19,18 @@ class ProgressBar(TemplateView):
     #     return 
 
 
-
+@login_required(login_url='/')
 def LogReq(request): ##doesn't need index. does have list though. Can be a generic detailview.
+    try:
+        user = request.user
+        form = LogsForm()
+    except User.DoesNotExist:
+        raise Http404("Question does not exist")
+    return render(request, 'fitapp/Logs.html', {'user': user, 'form': form})
+
+@login_required(login_url='/')
+def updatelogs(request, user_id):
+    user = User.objects.get(pk=user_id)
     if request.method == 'POST':
         # create a form instance and populate it with data from the request:
         form = LogsForm(request.POST)
@@ -35,6 +45,18 @@ def LogReq(request): ##doesn't need index. does have list though. Can be a gener
                 owner=request.user.profile
             )
             log.save()
+            user = User.objects.get(pk=user_id)
+            user.profile.current = user.profile.current + log.duration
+            if log.intensity == 'light':
+                user.profile.current = user.profile.current + 5
+            elif log.intensity == 'moderate':
+                user.profile.current = user.profile.current + 10
+            elif log.intensity == 'vigorous':
+                user.profile.current = user.profile.current + 15
+            if user.profile.current >= 100:
+                user.profile.current = user.profile.current - 100
+                user.profile.level = user.profile.level + 1
+            user.save()
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
@@ -42,8 +64,9 @@ def LogReq(request): ##doesn't need index. does have list though. Can be a gener
     # if a GET (or any other method) we'll create a blank form
     else:
         form = LogsForm()
-    return render(request, 'fitapp/Logs.html', {'form': form})
+    return render(request, 'fitapp/Logs.html', {'form': form, 'user': user})
 
+@login_required(login_url='/')
 def viewLogs(request):
     template = loader.get_template('fitapp/viewLogs.html')
 
@@ -54,6 +77,53 @@ def viewLogs(request):
     context = {'logs' : logs}
     return HttpResponse(template.render(context, request))
 
+@login_required(login_url='/')
+def update(request, user_id):
+    user = User.objects.get(pk=user_id)
+    user.profile.current = user.profile.current + 10
+    if user.profile.current >= 100:
+        user.profile.current = user.profile.current - 100
+        user.profile.level = user.profile.level + 1
+    user.save()
+    num = user.profile.level + 10
+    return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
+
+@login_required(login_url='/')
+def log(request, logs_id):
+    template = loader.get_template('fitapp/log.html')
+    log_accessed = get_object_or_404(Logs, pk=logs_id)
+    log_comments = Comment.objects.filter(post=log_accessed)
+    context = {'log' : log_accessed, 'comments': log_comments}
+
+    
+    return HttpResponse(template.render(context, request))
+
+def post_detail(request, logs_id):
+    template_name = loader.get_template('fitapp/log.html')
+    post = get_object_or_404(Logs, pk=logs_id)
+    comments = post.comments.filter(active=True)
+    new_comment = None
+    # Comment posted
+    if request.method == 'POST':
+        comment_form = CommentForm(data=request.POST)
+        if comment_form.is_valid():
+            
+            # Create Comment object but don't save to database yet
+            new_comment = comment_form.save(commit=False)
+            # Assign the current post to the comment
+            new_comment.post = post
+            # Save the comment to the database
+            new_comment.save()
+    else:
+        comment_form = CommentForm()
+    context = {'log' : post, 'comments': comments}
+
+    return HttpResponse(template_name.render(context, request))
+    """ return render(request, template_name, {'post': post,
+                                           'comments': comments,
+                                           'new_comment': new_comment,
+                                           'comment_form': comment_form}) """
+@login_required(login_url='/')
 def Achievements(request):
     try:
         user = request.user
@@ -61,29 +131,3 @@ def Achievements(request):
     except User.DoesNotExist:
         raise Http404("Question does not exist")
     return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
-
-    # if request.method == 'POST':
-    #     return HttpResponseRedirect('/')
-    # else:
-    #     user = request.user
-    #     num = user.profile.level + 10
-
-    # return render(request, 'fitapp/achievements.html', {'num': num})
-
-def update(request, user_id):
-    user = User.objects.get(pk=user_id)
-    if user.profile.current >= 100:
-        user.profile.current = user.profile.current - 100
-        user.profile.level = user.profile.level + 1
-        user.save()
-    else:
-        user.profile.current = user.profile.current + 10
-        user.save()
-    num = user.profile.level + 10
-    return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
-
-def log(request, logs_id):
-    template = loader.get_template('fitapp/log.html')
-    log_accessed = get_object_or_404(Logs, pk=logs_id)
-    context = {'log' : log_accessed}
-    return HttpResponse(template.render(context, request))

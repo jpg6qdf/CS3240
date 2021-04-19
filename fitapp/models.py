@@ -62,3 +62,19 @@ class Logs(models.Model):
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.date + ":" + self.exercise + "\n"
+
+class Comment(models.Model):
+    post = models.ForeignKey(Logs,on_delete=models.CASCADE,related_name='comments')
+    name = models.CharField(max_length=80)
+    #email = models.EmailField()
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    active = models.BooleanField(default=True)
+
+    class Meta:
+        ordering = ['created_on']
+
+    def __str__(self):
+        return 'Comment {} by {}'.format(self.body, self.name)
+
+
