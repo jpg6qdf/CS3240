@@ -1,0 +1,25 @@
+{% extends 'fitapp/base.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+{% block content %}
+<h1 style="text-align: center">Leaderboard</h1>
+<ul class="list-group" style="text-align: center">
+{% for u in users %}
+    {% if u.user.username != "b-08admin-again" %}
+        {% if u.user.username == currusername %}
+            <li class="list-group-item" style="background-color: lightblue;"> <h3 style="font-weight: bold;">{{ u.user.username }}</h3>
+            <p style="font-weight: bold;"> Level: {{ u.level }}</p>
+            <p style="font-weight: bold;"> Current XP: {{ u.current }}</p>
+            </li>
+        {% else %}
+            <li class="list-group-item"> <h3>{{ u.user.username }}</h3>
+            <p> Level: {{ u.level }}</p>
+            <p> Current XP: {{ u.current }}</p>
+            </li>
+        {% endif %}
+    {% endif %}
+{% endfor %}
+</ul>
+{% endblock %}
