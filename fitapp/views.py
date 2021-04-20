@@ -129,5 +129,13 @@ def Achievements(request):
         user = request.user
         num = user.profile.level + 10
     except User.DoesNotExist:
-        raise Http404("Question does not exist")
+        raise Http404("User does not exist")
     return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
+
+@login_required(login_url='/')
+def leaderboard(request):
+    try: 
+        users = Profile.objects.all().order_by('-level','-current')
+    except Profile.DoesNotExist:
+        raise Http404("Profile does not exist")
+    return render(request, 'fitapp/leaderboard.html', {'users': users})

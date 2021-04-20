@@ -1,0 +1,16 @@
+{% extends 'fitapp/base.html' %}
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript jquery='full' %}
+{% bootstrap_messages %}
+{% block content %}
+<h1 style="text-align: center">Leaderboard</h1>
+<ul class="list-group" style="text-align: center">
+{% for u in users %}
+    <li class="list-group-item"> <h3>{{ u.user.username }}</h3>
+    <p> Level: {{ u.level }}</p>
+    <p> Current XP: {{ u.current }}</p>
+    </li>
+{% endfor %}
+</ul>
+{% endblock %}
