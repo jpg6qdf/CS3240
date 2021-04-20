@@ -60,7 +60,7 @@ def updatelogs(request, user_id):
             # process the data in form.cleaned_data as required
             # ...
             # redirect to a new URL:
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect(reverse('fitapp:viewLogs'))
     # if a GET (or any other method) we'll create a blank form
     else:
         form = LogsForm()
@@ -135,7 +135,10 @@ def Achievements(request):
 @login_required(login_url='/')
 def leaderboard(request):
     try: 
+        curruser = request.user
+        currusername = request.user.username
+        print(currusername)
         users = Profile.objects.all().order_by('-level','-current')
     except Profile.DoesNotExist:
         raise Http404("Profile does not exist")
-    return render(request, 'fitapp/leaderboard.html', {'users': users})
+    return render(request, 'fitapp/leaderboard.html', {'users': users, 'currusername': currusername})
