@@ -90,15 +90,17 @@ def update(request, user_id):
 
 @login_required(login_url='/')
 def log(request, logs_id):
+    user = request.user
     template = loader.get_template('fitapp/log.html')
     log_accessed = get_object_or_404(Logs, pk=logs_id)
     log_comments = Comment.objects.filter(post=log_accessed)
-    context = {'log' : log_accessed, 'comments': log_comments}
+    context = {'log' : log_accessed, 'comments': log_comments, 'user' : user}
 
     
     return HttpResponse(template.render(context, request))
 
 def post_detail(request, logs_id):
+    user = request.user
     template_name = loader.get_template('fitapp/log.html')
     post = get_object_or_404(Logs, pk=logs_id)
     comments = post.comments.filter(active=True)
@@ -116,7 +118,7 @@ def post_detail(request, logs_id):
             new_comment.save()
     else:
         comment_form = CommentForm()
-    context = {'log' : post, 'comments': comments}
+    context = {'log' : post, 'comments': comments, 'user' : user}
 
     return HttpResponse(template_name.render(context, request))
     """ return render(request, template_name, {'post': post,
@@ -131,3 +133,9 @@ def Achievements(request):
     except User.DoesNotExist:
         raise Http404("Question does not exist")
     return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
+
+def deleteLog(log):
+    for comment in log.comments.filter(post=log):
+        comment.delete()
+    log.delete()
+    return HttpResponseRedirect('fitapp/viewLogs')
