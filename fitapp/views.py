@@ -134,8 +134,8 @@ def Achievements(request):
         raise Http404("Question does not exist")
     return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
 
-def deleteLog(log):
+""" def deleteLog(request, log):
     for comment in log.comments.filter(post=log):
         comment.delete()
     log.delete()
-    return HttpResponseRedirect('fitapp/viewLogs')
+    return HttpResponseRedirect('fitapp/viewLogs') """
