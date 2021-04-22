@@ -24,12 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '8xqbapu+4(g*xvj=%ij2k76_&625@&uux(5@y!!2zv^&jmu%90'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-SECURE_SSL_REDIRECT = True
-
+SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE =  True
-
 CSRF_COOKIE_SECURE = True
 
 ALLOWED_HOSTS = []
