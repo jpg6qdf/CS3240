@@ -19,7 +19,7 @@ class LogsForm(forms.ModelForm):
         fields = ('exercise', 'date', 'intensity', 'area', 'duration')
         widgets = {
             'date': DateInput(),
-            'duration': forms.NumberInput(attrs={'max': '100', 'type':'range', 'step': '1', 'min': '0', 'id':'myRange'})
+            'duration': forms.NumberInput(attrs={'max': '500', 'type':'range', 'step': '1', 'min': '0', 'id':'myRange'})
         }
 
 class CommentForm(forms.ModelForm):

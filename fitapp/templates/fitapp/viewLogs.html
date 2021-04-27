@@ -4,7 +4,9 @@
 {%for whatever in logs%}
 <tr>
     <td>
-        <a href="/fitapp/viewLogs/{{whatever.id}}">{{whatever.owner.user.first_name}}'s {{whatever.date}} {{whatever.area}} Workout</a></td><br>
+        <a href="/fitapp/viewLogs/{{whatever.id}}" class="btn btn-primary">{{whatever.owner.user.first_name}}'s {{whatever.date}} {{whatever.area}} Workout</a>
+    </td><br>
+        <hr>
 </tr>
 {%endfor%}
 {% endblock %}
