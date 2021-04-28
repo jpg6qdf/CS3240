@@ -140,7 +140,7 @@ def deleteLog(request, logs_id):
     for comment in allComments:
         comment.delete()
     Logs.objects.filter(pk=logs_id).delete()
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(reverse('fitapp:viewLogs'))
 
 @login_required(login_url='/')
 def leaderboard(request):
