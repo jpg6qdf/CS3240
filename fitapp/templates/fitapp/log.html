@@ -28,7 +28,9 @@
 <tr>Owner: {{log.owner.user.first_name}}</tr>
 
 {% if log.owner.user == user %}
-    <br><button type="button" class="btn" action="{% url 'fitapp:deleteLog'%}">Delete this log</button>
+    <form  action="{% url 'fitapp:deleteLog' log.id%}">
+        <br><button type="submit" class="btn">Delete this log</button>
+    </form>
 {% endif %}
 
 <div id="fb-root"></div>

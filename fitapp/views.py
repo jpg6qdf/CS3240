@@ -134,11 +134,13 @@ def Achievements(request):
         raise Http404("User does not exist")
     return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
 
-def deleteLog(request):
-    """ for comment in log.comments.filter(post=log):
+def deleteLog(request, logs_id):
+    log = Logs.objects.filter(pk=logs_id)[:1]
+    allComments = Comment.objects.all().filter(post=log)
+    for comment in allComments:
         comment.delete()
-    log.delete() """
-    return HttpResponseRedirect('fitapp/viewLogs')
+    Logs.objects.filter(pk=logs_id).delete()
+    return HttpResponseRedirect('/')
 
 @login_required(login_url='/')
 def leaderboard(request):
