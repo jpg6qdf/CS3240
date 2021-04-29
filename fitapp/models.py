@@ -57,7 +57,7 @@ class Logs(models.Model):
     duration = models.PositiveSmallIntegerField( name=('duration'), default=DEFAULT_duration,validators=[MinValueValidator(MIN_duration), MaxValueValidator(MAX_duration)])
         #_('duration'), 
     intensity = models.CharField(max_length=10, choices=INTENSITY_CHOICES, default='light')#, help_text="text.")     #could be slider, buttons, etc
-    area = models.CharField(max_length=100)#, help_text="text.")     #could be slider, buttons, etc
+    area = models.CharField(max_length=50)#, help_text="text.")     #could be slider, buttons, etc
     ## can include other relevant info we want to encourage
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     def __str__(self):
