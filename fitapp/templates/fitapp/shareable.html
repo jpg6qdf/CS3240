@@ -27,36 +27,14 @@
 <br>
 <tr>Owner: {{log.owner.user.first_name}}</tr>
 
-{% if log.owner.user == user %}
-    <form  action="{% url 'fitapp:deleteLog' log.id%}">
-        <br><button type="submit" class="btn-danger">Delete this log (cannot be undone)</button>
-    </form>
-
-<div id="fb-root"></div>
-<script>(function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s); js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));</script>
-
-<!-- Your share button code -->
-<div class="fb-share-button" data-href="/fitapp/viewLogs/{{log.id}}/shareable" data-layout="button_count">
-</div>
-{% endif %}
-
 <!-- Comments Feature -->
 
 <div class="container">
     <div class="row">
-
-
         <div class="col-md-8 card mb-4  mt-3 ">
             <div class="card-body">
                 <!-- comments -->
                 <h2>{{ comments.count }} comments</h2>
-
                 {% for comment in comments %}
                 <div class="comments" style="padding: 10px;">
                     <p class="font-weight-bold">
@@ -68,21 +46,6 @@
                     {{ comment.body | linebreaks }}
                 </div>
                 {% endfor %}
-            </div>
-        </div>
-        <div class="col-md-8 card mb-4  mt-3 ">
-            <div class="card-body">
-                <h3>Leave a comment</h3>
-                <form action="{% url 'fitapp:post_detail' log.id%}" method="post" style="margin-top: 1.3em;">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <input class="form-control" type="text-area" placeholder="Title" name="name">
-                    </div>
-                    <div class="form-group">
-                        <textarea class="form-control" rows="5"  type="text-area" placeholder="Comment" name="body"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
-                </form>
             </div>
         </div>
     </div>

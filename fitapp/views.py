@@ -155,3 +155,11 @@ def leaderboard(request):
     except Profile.DoesNotExist:
         raise Http404("Profile does not exist")
     return render(request, 'fitapp/leaderboard.html', {'users': users, 'currusername': currusername})
+
+def shareable(request, logs_id):
+    template = loader.get_template('fitapp/shareable.html')
+    log_accessed = get_object_or_404(Logs, pk=logs_id)
+    log_comments = Comment.objects.filter(post=log_accessed)
+    context = {'log' : log_accessed, 'comments': log_comments}    
+    return HttpResponse(template.render(context, request))
+
