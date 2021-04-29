@@ -135,12 +135,15 @@ def Achievements(request):
     return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
 
 def deleteLog(request, logs_id):
-    log = Logs.objects.filter(pk=logs_id)[:1]
+    user = request.user
+    log = Logs.objects.get(pk=logs_id)
+    if log.owner != user:
+        return HttpResponseRedirect('/')
     allComments = Comment.objects.all().filter(post=log)
     for comment in allComments:
         comment.delete()
     Logs.objects.filter(pk=logs_id).delete()
-    return HttpResponseRedirect('/')
+    return HttpResponseRedirect(reverse('fitapp:viewLogs'))
 
 @login_required(login_url='/')
 def leaderboard(request):
