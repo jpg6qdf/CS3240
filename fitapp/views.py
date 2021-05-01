@@ -1,3 +1,10 @@
+"""
+*  REFERENCES
+*
+*  Title: Creating Comments System With Django
+*  Author: Django Central
+*  URL: https://djangocentral.com/creating-comments-system-with-django/
+"""
 from django.views.generic.base import TemplateView
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -69,7 +76,6 @@ def updatelogs(request, user_id):
 @login_required(login_url='/')
 def viewLogs(request):
     template = loader.get_template('fitapp/viewLogs.html')
-
     if request.method != 'GET':
         raise Exception('Should be a GET request')
     logs = Logs.objects.order_by("-date") 
@@ -97,6 +103,7 @@ def log(request, logs_id):
     context = {'log' : log_accessed, 'comments': log_comments, 'user' : user}
     return HttpResponse(template.render(context, request))
 
+# begin Creating Comments code #
 @login_required(login_url='/')
 def post_detail(request, logs_id):
     user = request.user
@@ -120,10 +127,8 @@ def post_detail(request, logs_id):
     context = {'log' : post, 'comments': comments, 'user' : user}
 
     return HttpResponse(template_name.render(context, request))
-    """ return render(request, template_name, {'post': post,
-                                           'comments': comments,
-                                           'new_comment': new_comment,
-                                           'comment_form': comment_form}) """
+# end Creating Comments code #
+
 @login_required(login_url='/')
 def Achievements(request):
     try:
