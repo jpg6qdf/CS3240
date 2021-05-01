@@ -1,3 +1,10 @@
+"""
+*  REFERENCES
+*
+*  Title: Creating Comments System With Django
+*  Author: Django Central
+*  URL: https://djangocentral.com/creating-comments-system-with-django/
+"""
 from django.db import models
 from django.contrib.auth.models import User
 from django.core.validators import MaxValueValidator, MinValueValidator
@@ -63,6 +70,7 @@ class Logs(models.Model):
     def __str__(self):
         return self.date + ":" + self.exercise + "\n"
 
+# begin Creating Comments code #
 class Comment(models.Model):
     post = models.ForeignKey(Logs,on_delete=models.CASCADE,related_name='comments')
     name = models.CharField(max_length=80)
@@ -76,5 +84,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.body, self.name)
+# end Creating Comments code #
 
 

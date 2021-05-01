@@ -73,8 +73,8 @@ def viewLogs(request):
     if request.method != 'GET':
         raise Exception('Should be a GET request')
     logs = Logs.objects.order_by("-date") 
-    #my_logs = Logs.objects.filter(owner=request.user.profile).all() # If we want logs to be viewable only to their poster
-    context = {'logs' : logs}
+    my_logs = Logs.objects.filter(owner=request.user.profile).all()
+    context = {'logs' : logs, 'my_logs' : my_logs}
     return HttpResponse(template.render(context, request))
 
 @login_required(login_url='/')
@@ -95,10 +95,9 @@ def log(request, logs_id):
     log_accessed = get_object_or_404(Logs, pk=logs_id)
     log_comments = Comment.objects.filter(post=log_accessed)
     context = {'log' : log_accessed, 'comments': log_comments, 'user' : user}
-
-    
     return HttpResponse(template.render(context, request))
 
+@login_required(login_url='/')
 def post_detail(request, logs_id):
     user = request.user
     template_name = loader.get_template('fitapp/log.html')
@@ -134,9 +133,10 @@ def Achievements(request):
         raise Http404("User does not exist")
     return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
 
+@login_required(login_url='/')
 def deleteLog(request, logs_id):
     user = request.user
-    log = Logs.objects.get(pk=logs_id)
+    log = get_object_or_404(Logs, pk=logs_id)
     if log.owner != user:
         return HttpResponseRedirect('/')
     allComments = Comment.objects.all().filter(post=log)
