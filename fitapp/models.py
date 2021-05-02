@@ -15,21 +15,21 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
 
 EXERCISE_CHOICES = (
-    ('Pushup','Pushup'),
-    ('Situp', 'Situp'),
-    ('Pullup','Pullup'),
-    ('Squat','Squat'),
-    ('Burpee','Burpee'),
-    ('Lift','Lift'),
-    ('Run','Run'),
-    ('Stretches','Stretches'),
-    ('Other','Other'),
+    ('pushup','pushup'),
+    ('situp', 'situp'),
+    ('pullup','pullup'),
+    ('squat','squat'),
+    ('burpee','burpee'),
+    ('lift','lift'),
+    ('run','run'),
+    ('stretches','stretches'),
+    ('other','other'),
 )
 
 INTENSITY_CHOICES = (
-    ('Light','Light'),
-    ('Moderate', 'Moderate'),
-    ('Vigorous','Vigorous'),
+    ('light','light'),
+    ('moderate', 'moderate'),
+    ('vigorous','vigorous'),
 )
 
 DEFAULT_duration = 1
@@ -50,14 +50,14 @@ def save_user_profile(sender, instance, **kwargs):
 
 # logs model
 class Logs(models.Model):
-    exercise = models.CharField(max_length=10, choices=EXERCISE_CHOICES, default='Other')#, help_text="title.")
+    exercise = models.CharField(max_length=10, choices=EXERCISE_CHOICES, default='other')#, help_text="title.")
     date = models.DateField()#, help_text="text.")      #could be slider, buttons, etc
     #duration = models.CharField(max_length=200)#, help_text="text.")      #could be slider, buttons, etc.        ##also includes reps.
     
     duration = models.PositiveSmallIntegerField( name=('duration'), default=DEFAULT_duration,validators=[MinValueValidator(MIN_duration), MaxValueValidator(MAX_duration)])
         #_('duration'), 
-    intensity = models.CharField(max_length=10, choices=INTENSITY_CHOICES, default='Light')#, help_text="text.")     #could be slider, buttons, etc
-    area = models.CharField(max_length=100)#, help_text="text.")     #could be slider, buttons, etc
+    intensity = models.CharField(max_length=10, choices=INTENSITY_CHOICES, default='light')#, help_text="text.")     #could be slider, buttons, etc
+    area = models.CharField(max_length=50)#, help_text="text.")     #could be slider, buttons, etc
     ## can include other relevant info we want to encourage
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     def __str__(self):
