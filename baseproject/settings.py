@@ -26,6 +26,10 @@ SECRET_KEY = '8xqbapu+4(g*xvj=%ij2k76_&625@&uux(5@y!!2zv^&jmu%90'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SECURE_SSL_REDIRECT = False
+SESSION_COOKIE_SECURE =  True
+CSRF_COOKIE_SECURE = True
+
 ALLOWED_HOSTS = []
 
 
@@ -155,6 +159,7 @@ AUTHENTICATION_BACKENDS = (
 SITE_ID = 1
 SITE_ID = 2
 SITE_ID = 3
+SITE_ID = 4
 
 LOGIN_REDIRECT_URL = '/'
 

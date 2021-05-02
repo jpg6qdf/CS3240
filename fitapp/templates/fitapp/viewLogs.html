@@ -1,6 +1,10 @@
 {% extends 'fitapp/base.html' %}
 
 {% block content%}
+<h1 style="text-align: center"> View Logs </h1>
+<h5 style="text-align: center">Here you can view your own logs, share them to Facebook, and delete your logs! You can also view other users' logs and leave comments!</h5>
+<br>
+
 {%for whatever in logs%}
 <tr>
     <td>
@@ -8,5 +12,8 @@
     </td><br>
         <hr>
 </tr>
+
+<br>
+
 {%endfor%}
 {% endblock %}
