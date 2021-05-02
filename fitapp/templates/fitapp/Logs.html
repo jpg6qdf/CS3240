@@ -5,6 +5,10 @@
 {% bootstrap_messages %}
 
 {% block content%}
+<h1 style="text-align: center"> Submit Log </h1>
+<h5 style="text-align: center">Record your exercises here! The longer and more intense your workout is, the more XP you'll earn!</h5>
+<br>
+
 <form action="{% url 'fitapp:updatelogs' user.id %}" method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
@@ -23,4 +27,8 @@
 
     <input type="submit" value="Submit">
 </form>
+
+<br>
+
 {% endblock %}
+
