@@ -11,9 +11,9 @@ from django.db.models import F
 
 from django.contrib.auth.decorators import login_required
 
-class ProgressBar(TemplateView):
-    model = Profile
-    template_name = 'fitapp/progress.html'
+@login_required(login_url='/')
+def ProgressBar(request):
+    return render(request, 'fitapp/progress.html')
     # def get(self, request):
     #     object1 = User.objects.all()
     #     return 
