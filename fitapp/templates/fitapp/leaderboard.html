@@ -12,12 +12,12 @@
 {% for u in users %}
     {% if u.user.username != "b-08admin-again" %}
         {% if u.user.username == currusername %}
-            <li class="list-group-item" style="background-color: lightblue;"> <h3 style="font-weight: bold;">{{ u.user.username }}</h3>
+            <li class="list-group-item" style="background-color: lightblue;"> <h3 style="font-weight: bold;">{{ u.user.first_name }}</h3>
             <p style="font-weight: bold;"> Level: {{ u.level }}</p>
             <p style="font-weight: bold;"> Current XP: {{ u.current }}</p>
             </li>
         {% else %}
-            <li class="list-group-item"> <h3>{{ u.user.username }}</h3>
+            <li class="list-group-item"> <h3>{{ u.user.first_name }}</h3>
             <p> Level: {{ u.level }}</p>
             <p> Current XP: {{ u.current }}</p>
             </li>

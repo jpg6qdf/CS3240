@@ -1,3 +1,10 @@
+"""
+*  REFERENCES
+*
+*  Title: Creating Comments System With Django
+*  Author: Django Central
+*  URL: https://djangocentral.com/creating-comments-system-with-django/
+"""
 from django.views.generic.base import TemplateView
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -69,12 +76,11 @@ def updatelogs(request, user_id):
 @login_required(login_url='/')
 def viewLogs(request):
     template = loader.get_template('fitapp/viewLogs.html')
-
     if request.method != 'GET':
         raise Exception('Should be a GET request')
     logs = Logs.objects.order_by("-date") 
-    #my_logs = Logs.objects.filter(owner=request.user.profile).all() # If we want logs to be viewable only to their poster
-    context = {'logs' : logs}
+    my_logs = Logs.objects.filter(owner=request.user.profile).all()
+    context = {'logs' : logs, 'my_logs' : my_logs}
     return HttpResponse(template.render(context, request))
 
 @login_required(login_url='/')
@@ -95,10 +101,10 @@ def log(request, logs_id):
     log_accessed = get_object_or_404(Logs, pk=logs_id)
     log_comments = Comment.objects.filter(post=log_accessed)
     context = {'log' : log_accessed, 'comments': log_comments, 'user' : user}
-
-    
     return HttpResponse(template.render(context, request))
 
+# begin Creating Comments code #
+@login_required(login_url='/')
 def post_detail(request, logs_id):
     user = request.user
     template_name = loader.get_template('fitapp/log.html')
@@ -121,10 +127,8 @@ def post_detail(request, logs_id):
     context = {'log' : post, 'comments': comments, 'user' : user}
 
     return HttpResponse(template_name.render(context, request))
-    """ return render(request, template_name, {'post': post,
-                                           'comments': comments,
-                                           'new_comment': new_comment,
-                                           'comment_form': comment_form}) """
+# end Creating Comments code #
+
 @login_required(login_url='/')
 def Achievements(request):
     try:
@@ -134,9 +138,10 @@ def Achievements(request):
         raise Http404("User does not exist")
     return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
 
+@login_required(login_url='/')
 def deleteLog(request, logs_id):
     user = request.user
-    log = Logs.objects.get(pk=logs_id)
+    log = get_object_or_404(Logs, pk=logs_id)
     if log.owner != user:
         return HttpResponseRedirect('/')
     allComments = Comment.objects.all().filter(post=log)
@@ -155,3 +160,11 @@ def leaderboard(request):
     except Profile.DoesNotExist:
         raise Http404("Profile does not exist")
     return render(request, 'fitapp/leaderboard.html', {'users': users, 'currusername': currusername})
+
+def shareable(request, logs_id):
+    template = loader.get_template('fitapp/shareable.html')
+    log_accessed = get_object_or_404(Logs, pk=logs_id)
+    log_comments = Comment.objects.filter(post=log_accessed)
+    context = {'log' : log_accessed, 'comments': log_comments}    
+    return HttpResponse(template.render(context, request))
+
