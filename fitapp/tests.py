@@ -1,4 +1,4 @@
-from django.test import TestCase
+from django.test import TestCase, Client
 from fitapp.models import User, Logs, Profile, Comment
 from django.contrib.auth.models import User
 import fitapp.views as views
@@ -13,6 +13,7 @@ class DummyTestCase(TestCase):
         # self.profile_1.save()
         # self.profile_1.id
         self.comments_1 = Comment.objects.create(name="test", post=self.logs_1, body="test", created_on="2021-04-11", active=True)
+        c = Client()
 
 
     def test_log(self):
@@ -30,3 +31,8 @@ class DummyTestCase(TestCase):
         Test = self.comments_1
         print(Test.__str__())
         self.assertEqual(Test.__str__(), "Comment test by test")
+
+    def test_profiletab_beforelogin(self):
+        Test = c
+        Self.assertEqual(Test.get('/'), "200")
+
