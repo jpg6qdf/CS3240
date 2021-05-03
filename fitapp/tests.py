@@ -32,7 +32,11 @@ class DummyTestCase(TestCase):
         print(Test.__str__())
         self.assertEqual(Test.__str__(), "Comment test by test")
 
+    def test_hometab_beforelogin(self):
+        Test = self.c
+        self.assertEqual(Test.get('/').status_code, 200)
+
     def test_profiletab_beforelogin(self):
         Test = self.c
-        self.assertEqual(Test.get('/'), "200")
+        self.assertEqual(Test.get('/progress/').status_code, 302)
 
