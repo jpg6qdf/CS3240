@@ -34,5 +34,5 @@ class DummyTestCase(TestCase):
 
     def test_profiletab_beforelogin(self):
         Test = self.c
-        Self.assertEqual(Test.get('/'), "200")
+        self.assertEqual(Test.get('/'), "200")
 
