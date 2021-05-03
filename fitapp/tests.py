@@ -83,3 +83,10 @@ class DummyTestCase(TestCase):
         Test.force_login(adminuser)
         self.assertEqual(Test.get('/fitapp/leaderboard/').status_code, 200)
 
+    def test_viewLogs_firstlog(self):
+        Test = self.c
+        adminuser = User.objects.create_superuser(username="testadmin")
+        Test.force_login(adminuser)
+        self.assertEqual(Test.get('/fitapp/viewLogs/1').status_code, 200)
+    
+
