@@ -52,11 +52,12 @@ class DummyTestCase(TestCase):
         Test.force_login(adminuser)
         self.assertEqual(Test.get('/').status_code, 200)
     
-    # def test_profiletab_afterlogin(self):
-    #     Test = self.c
-    #     adminuser = User.objects.create_superuser(username="testadmin")
-    #     Test.force_login(adminuser)
-    #     self.assertEqual(Test.get('/fitapp/progress/').status_code, 200)
+    def test_profiletab_afterlogin(self):
+        Test = self.c
+        adminuser = User.objects.create_superuser(username="testadmin")
+        Test.force_login(adminuser)
+        testprofile = Profile(user=adminuser)
+        self.assertEqual(Test.get('/fitapp/progress/').status_code, 200)
 
     def test_logstab_afterlogin(self):
         Test = self.c
