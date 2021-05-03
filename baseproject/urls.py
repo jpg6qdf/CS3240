@@ -17,11 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from django.contrib.auth.views import LogoutView
+from . import views
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name="login/index.html")),
+    path('logouts/', views.logout_view, name="logout_view"),
     path('admin/', admin.site.urls),
-    path('logout/', LogoutView),
+    # path('logout/', LogoutView),
     path('accounts/', include('allauth.urls')),
     path('fitapp/', include('fitapp.urls'))
 ]
