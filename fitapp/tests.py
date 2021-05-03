@@ -47,8 +47,8 @@ class DummyTestCase(TestCase):
         self.assertEqual(Test.get('/fitapp/leaderboard/').status_code, 302)
 
     def test_hometab_afterlogin(self):
-        TestClient = self.c
+        Test = self.c
         adminuser = User.objects.create_superuser(username="testadmin")
-        TestClient.force_login(adminuser)
+        Test.force_login(adminuser)
         self.assertEqual(Test.get('/').status_code, 200)
 
