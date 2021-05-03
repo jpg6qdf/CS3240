@@ -68,7 +68,7 @@ class DummyTestCase(TestCase):
         Test = self.c
         adminuser = User.objects.create_superuser(username="testadmin")
         Test.force_login(adminuser)
-        self.assertEqual(Test.get('/fitapp/viewLogs').status_code, 200)
+        self.assertEqual(Test.get('/fitapp/viewLogs/').status_code, 200)
 
     def test_achievementstab_afterlogin(self):
         Test = self.c
