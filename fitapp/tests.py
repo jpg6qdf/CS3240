@@ -11,7 +11,6 @@ class DummyTestCase(TestCase):
         testuser = User.objects.create(username="test10", email="test10@gmail.com")
         self.comments_1 = Comment.objects.create(name="test", post=self.logs_1, body="test", created_on="2021-04-11", active=True)
         self.c = Client()
-        adminuser = User.objects.create_superuser(username='b-08-admin2')
 
     def test_log(self):
         Test = self.logs_1
@@ -49,7 +48,7 @@ class DummyTestCase(TestCase):
 
     def test_hometab_afterlogin(self):
         TestClient = self.c
-        TestAdmin = self.adminuser
-        TestClient.force_login(TestAdmin)
+        adminuser = User.objects.get(pk=1)
+        TestClient.force_login(adminuser)
         self.assertEqual(Test.get('/').status_code, 200)
 
