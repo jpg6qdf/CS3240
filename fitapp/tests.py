@@ -11,7 +11,7 @@ class DummyTestCase(TestCase):
         testuser = User.objects.create(username="test10", email="test10@gmail.com")
         self.comments_1 = Comment.objects.create(name="test", post=self.logs_1, body="test", created_on="2021-04-11", active=True)
         self.c = Client()
-        adminuser = User.objects.get(username="b-08-admin2")
+        adminuser = User.objects.get(username='b-08-admin2')
 
     def test_log(self):
         Test = self.logs_1
