@@ -4,13 +4,20 @@
 {% bootstrap_javascript jquery='full' %}
 {% bootstrap_messages %}
 {% block content %}
+<head>
+    <style>
+        .list-group-item {
+            display: list-item;
+        }
+    </style>
+</head>
 <h1 style="text-align: center">Leaderboard</h1>
 <h5 style="text-align: center">See how your current level and XP rank compared to other users!</h5>
 <br>
 
-<ul class="list-group" style="text-align: center">
+<ol class="list-group list-group-numbered" style="text-align: center">
 {% for u in users %}
-    {% if u.user.username != "b-08admin-again" %}
+    {% if u.user.username != "b-08-admin2" and u.user.username != "testadmin" %}
         {% if u.user.username == currusername %}
             <li class="list-group-item" style="background-color: lightblue;"> <h3 style="font-weight: bold;">{{ u.user.first_name }}</h3>
             <p style="font-weight: bold;"> Level: {{ u.level }}</p>
@@ -24,7 +31,7 @@
         {% endif %}
     {% endif %}
 {% endfor %}
-</ul>
+</ol>
 
 <br>
 <br>

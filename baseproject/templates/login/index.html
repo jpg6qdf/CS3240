@@ -5,18 +5,20 @@
 
 
 {% if user.is_authenticated %}
+<!-- <meta http-equiv="Refresh" content="0; url='logouts/'" /> -->
 <h2 style="text-align: center">Welcome to Fitter Late Than Never, {{ user.first_name }}!</h2>
 <br>
 
-<h5 style="text-align: center">This is a fun exercise app where you can easily log in your workouts and achieve XP for doing exercise!</h5>
+<h5 style="text-align: center">This is a fun exercise app where you can easily log in your workouts and achieve XP for
+    doing exercise!</h5>
 <h5 style="text-align: center">Check out the different tabs to learn what this app can do for you and get started! </h5>
 
 <br>
 
-    <div class="text-center" style="margin: 10px 10px 10px 10px">
-        <a class="btn btn-primary" href="accounts/logout/">Log out with Google</a>
-    </div>
-    
+<div class="text-center" style="margin: 10px 10px 10px 10px">
+    <a class="btn btn-primary" href="/logouts/">Log out with Google</a>
+</div>
+
 <div class="embed-responsive embed-responsive-16by9" style="width: 720px; height: 405px; margin: auto;">
     <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ZXsQAXx_ao0" frameborder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

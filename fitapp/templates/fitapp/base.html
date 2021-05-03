@@ -1,29 +1,30 @@
 <html lang="en">
-  <!--navbar-->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Fitter Late Than Never</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+<!--navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="/">Fitter Late Than Never</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="/fitapp/progress/">Profile</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/fitapp/Logs/">Submit Log</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/fitapp/viewLogs/">View Logs</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/fitapp/achievements/">Achievements</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/fitapp/leaderboard/">Leaderboard</a>
-        </li>
-        <!--<li class="nav-item dropdown">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/fitapp/progress/">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/fitapp/Logs/">Submit Log</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/fitapp/viewLogs/">View Logs</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/fitapp/achievements/">Achievements</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/fitapp/leaderboard/">Leaderboard</a>
+      </li>
+      <!--<li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown
           </a>
@@ -34,41 +35,49 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>-->
-      </ul>
-    </div>
-  </nav>
+    </ul>
+  </div>
+</nav>
 
 <!--basic stylings-->
-  <head>
-    {% block head %}
-    {% endblock %}
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <title>Fitter Late than Never</title>
-  </head>
-  <body>
-    {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'fitapp/style.css' %}">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-8">
-          <!--<h1 class="mt-2">Django Tutorials!</h1>-->
-          <hr class="mt-0 mb-4">
-          {% block content %}
-          {% endblock %}
-        </div>
+
+<head>
+  {% block head %}
+  {% endblock %}
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <title>Fitter Late than Never</title>
+</head>
+
+<body>
+  {% load static %}
+  <link rel="stylesheet" type="text/css" href="{% static 'fitapp/style.css' %}">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-8">
+        <!--<h1 class="mt-2">Django Tutorials!</h1>-->
+        <hr class="mt-0 mb-4">
+        {% block content %}
+        {% endblock %}
       </div>
     </div>
-  </body>
+  </div>
+</body>
 
 
-  <!--footer-->
-  <footer class="footer">
-    {% block footer %}
-    {% endblock %}
-    <div class ="container text=center">
-      <div class="footer fixed-bottom">CS 3240 Project</div>
+<!--footer-->
+<footer class="bg-footer">
+  {% block footer %}
+  {% endblock %}
+  <div class="card fixed-bottom">
+    <div class="card-header text-center">
+      <small> Fitter Late Than Never &copy; 2021 &nbsp; &nbsp; All Rights Reserved</small>
     </div>
-  </footer>
+  </div>
+  <!-- <div class ="container text=center">
+      <div class="footer fixed-bottom">CS 3240 Project</div>
+    </div> -->
+</footer>
 
 </html>
