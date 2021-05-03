@@ -13,7 +13,7 @@ class DummyTestCase(TestCase):
         # self.profile_1.save()
         # self.profile_1.id
         self.comments_1 = Comment.objects.create(name="test", post=self.logs_1, body="test", created_on="2021-04-11", active=True)
-        c = Client()
+        self.c = Client()
 
 
     def test_log(self):
@@ -33,6 +33,6 @@ class DummyTestCase(TestCase):
         self.assertEqual(Test.__str__(), "Comment test by test")
 
     def test_profiletab_beforelogin(self):
-        Test = c
+        Test = self.c
         Self.assertEqual(Test.get('/'), "200")
 
