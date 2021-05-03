@@ -38,5 +38,5 @@ class DummyTestCase(TestCase):
 
     def test_profiletab_beforelogin(self):
         Test = self.c
-        self.assertEqual(Test.get('/progress/').status_code, 302)
+        self.assertEqual(Test.get('/fitapp/progress/').status_code, 302)
 
