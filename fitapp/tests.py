@@ -48,7 +48,7 @@ class DummyTestCase(TestCase):
 
     def test_hometab_afterlogin(self):
         TestClient = self.c
-        adminuser = User.objects.get(pk=1)
+        adminuser = User.objects.create_superuser(username="testadmin")
         TestClient.force_login(adminuser)
         self.assertEqual(Test.get('/').status_code, 200)
 
