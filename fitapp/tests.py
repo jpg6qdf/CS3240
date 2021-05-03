@@ -51,4 +51,34 @@ class DummyTestCase(TestCase):
         adminuser = User.objects.create_superuser(username="testadmin")
         Test.force_login(adminuser)
         self.assertEqual(Test.get('/').status_code, 200)
+    
+    def test_profiletab_afterlogin(self):
+        Test = self.c
+        adminuser = User.objects.create_superuser(username="testadmin")
+        Test.force_login(adminuser)
+        self.assertEqual(Test.get('/fitapp/progress/').status_code, 200)
+
+    def test_logstab_afterlogin(self):
+        Test = self.c
+        adminuser = User.objects.create_superuser(username="testadmin")
+        Test.force_login(adminuser)
+        self.assertEqual(Test.get('/fitapp/Logs/').status_code, 200)
+
+    def test_viewlogstab_afterlogin(self):
+        Test = self.c
+        adminuser = User.objects.create_superuser(username="testadmin")
+        Test.force_login(adminuser)
+        self.assertEqual(Test.get('/fitapp/viewLogs').status_code, 200)
+
+    def test_achievementstab_afterlogin(self):
+        Test = self.c
+        adminuser = User.objects.create_superuser(username="testadmin")
+        Test.force_login(adminuser)
+        self.assertEqual(Test.get('/fitapp/achievements/').status_code, 200)
+
+    def test_leaderboard_afterlogin(self):
+        Test = self.c
+        adminuser = User.objects.create_superuser(username="testadmin")
+        Test.force_login(adminuser)
+        self.assertEqual(Test.get('/fitapp/leaderboard/').status_code, 200)
 
