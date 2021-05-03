@@ -140,7 +140,7 @@ def Achievements(request):
 
 @login_required(login_url='/')
 def deleteLog(request, logs_id):
-    user = request.user
+    user = request.user.profile
     log = get_object_or_404(Logs, pk=logs_id)
     if log.owner != user:
         return HttpResponseRedirect('/')
