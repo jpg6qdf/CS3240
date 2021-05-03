@@ -40,3 +40,19 @@ class DummyTestCase(TestCase):
         Test = self.c
         self.assertEqual(Test.get('/fitapp/progress/').status_code, 302)
 
+    def test_logstab_beforelogin(self):
+        Test = self.c
+        self.assertEqual(Test.get('/fitapp/Logs/').status_code, 302)
+    
+    def test_viewlogstab_beforelogin(self):
+        Test = self.c
+        self.assertEqual(Test.get('/fitapp/viewLogs/').status_code, 302)
+
+    def test_achievementstab_beforelogin(self):
+        Test = self.c
+        self.assertEqual(Test.get('/fitapp/achievements/').status_code, 302)
+
+    def test_leaderboardtab_beforelogin(self):
+        Test = self.c
+        self.assertEqual(Test.get('/fitapp/leaderboard/').status_code, 302)
+
