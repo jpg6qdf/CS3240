@@ -83,10 +83,14 @@ class DummyTestCase(TestCase):
         Test.force_login(adminuser)
         self.assertEqual(Test.get('/fitapp/leaderboard/').status_code, 200)
 
-    def test_viewLogs_firstlog(self):
+    # def test_viewlogstab_firstlog(self):
+    #     Test = self.c
+    #     adminuser = User.objects.create_superuser(username="testadmin")
+    #     Test.force_login(adminuser)
+    #     self.assertEqual(Test.get('/fitapp/viewLogs/1').status_code, 200)
+    
+    def test_logstab_submitalog(self):
         Test = self.c
         adminuser = User.objects.create_superuser(username="testadmin")
         Test.force_login(adminuser)
-        self.assertEqual(Test.get('/fitapp/viewLogs/1').status_code, 200)
-    
-
+        self.assertEqual(Test.post("/fitapp/Logs/", data={"exercise": "running", "date": "2021-04-11", "duration": "30", "intensity": "moderate"}).status_code, 200)
