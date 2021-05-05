@@ -9,6 +9,7 @@ from django.test import TestCase, Client
 from fitapp.models import User, Logs, Profile, Comment
 from django.contrib.auth.models import User
 import fitapp.views as views
+from fitapp.forms import LogsForm, CommentForm
 
 # Create your tests here.
 class DummyTestCase(TestCase):
@@ -89,15 +90,14 @@ class DummyTestCase(TestCase):
         adminuser = User.objects.create_superuser(username="testadmin")
         Test.force_login(adminuser)
         self.assertEqual(Test.get('/fitapp/leaderboard/').status_code, 200)
-
-    # def test_viewlogstab_firstlog(self):
-    #     Test = self.c
-    #     adminuser = User.objects.create_superuser(username="testadmin")
-    #     Test.force_login(adminuser)
-    #     self.assertEqual(Test.get('/fitapp/viewLogs/1').status_code, 200)
     
     def test_logstab_submitalog(self):
         Test = self.c
         adminuser = User.objects.create_superuser(username="testadmin")
         Test.force_login(adminuser)
         self.assertEqual(Test.post("/fitapp/Logs/", data={"exercise": "running", "date": "2021-04-11", "duration": "30", "intensity": "moderate"}).status_code, 200)
+
+    def test_logform(self):
+        form_data = {"exercise": "running", "date": "2021-04-11", "duration": "30", "intensity": "moderate"}
+        form = LogsForm(data=form_data)
+        self.assertTrue(form.is_valid())
