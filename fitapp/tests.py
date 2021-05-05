@@ -165,3 +165,21 @@ class DummyTestCase(TestCase):
         request.user = self.user
         response = log(request, self.logs_1.id)
         self.assertEqual(response.status_code, 200) 
+
+    def test_postdetailviews(self):
+        request = self.factory.get('viewLogs/<int:logs_id>/comment')
+        request.user = self.user
+        response = post_detail(request, self.logs_1.id)
+        self.assertEqual(response.status_code, 200) 
+
+    def test_deletelogsviews(self):
+        request = self.factory.get('viewLogs/<int:logs_id>/deleteLog')
+        request.user = self.user
+        response = deleteLog(request, self.logs_1.id)
+        self.assertEqual(response.status_code, 200) 
+
+    def test_shareableviews(self):
+        request = self.factory.get('viewLogs/<int:logs_id>/shareable')
+        request.user = self.user
+        response = shareable(request, self.logs_1.id)
+        self.assertEqual(response.status_code, 200) 
