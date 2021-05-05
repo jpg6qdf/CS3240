@@ -83,6 +83,12 @@ def viewLogs(request):
     context = {'logs' : logs, 'my_logs' : my_logs}
     return HttpResponse(template.render(context, request))
 
+def userLogs(request, user_id):
+    print(user_id)
+    user = User.objects.get(pk=user_id)
+    user_logs = Logs.objects.filter(owner=user.profile)
+    return render(request, 'fitapp/userLogs.html', {'logs': user_logs, 'user': user})
+
 @login_required(login_url='/')
 def update(request, user_id):
     user = User.objects.get(pk=user_id)

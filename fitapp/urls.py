@@ -15,4 +15,5 @@ urlpatterns = [
     path('viewLogs/<int:logs_id>/deleteLog', views.deleteLog, name='deleteLog'),
     path('viewLogs/<int:logs_id>/shareable', views.shareable, name='shareable'),
     path('leaderboard/', views.leaderboard, name='leaderboard'),
+    path('userLogs/<int:user_id>', views.userLogs, name='userLogs')
 ]
