@@ -176,7 +176,7 @@ class DummyTestCase(TestCase):
         request = self.factory.get('viewLogs/<int:logs_id>/deleteLog')
         request.user = self.user
         response = deleteLog(request, self.logs_1.id)
-        self.assertEqual(response.status_code, 200) 
+        self.assertEqual(response.status_code, 302) 
 
     def test_shareableviews(self):
         request = self.factory.get('viewLogs/<int:logs_id>/shareable')
