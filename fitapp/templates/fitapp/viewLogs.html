@@ -1,3 +1,11 @@
+<!-- REFERENCES
+Title: Bootstrap 4 Tables
+URL: https://www.w3schools.com/bootstrap4/bootstrap_tables.asp
+
+Title: Bootstrap 4 Grid System
+URL: https://www.w3schools.com/bootstrap4/bootstrap_grid_system.asp
+
+-->
 {% extends 'fitapp/base.html' %}
 
 {% block content%}
@@ -5,7 +13,7 @@
 <h5 style="text-align: center">Here you can view your own logs, share them to Facebook, and delete your logs! You can also view other users' logs and leave comments!</h5>
 <br>
 <div class="row">
-    <div class="col-xl-6">
+    <div class="col-xl-5">
         <table class="table">
             <thead>
                 <tr>
@@ -21,7 +29,8 @@
             </tbody>
         </table>
     </div>
-    <div class="col-xl-6">
+    <div class="col-xl-2"></div>
+    <div class="col-xl-5">
         <table class="table">
             <thead>
                 <tr>
@@ -35,7 +44,7 @@
                 </tr>
                 {%endfor%}
             </tbody>
-        </table>
+        </table><br><br><br>
     </div>
 </div>
 {% endblock %}
