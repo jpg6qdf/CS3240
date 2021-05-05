@@ -15,9 +15,7 @@ from fitapp.forms import LogsForm, CommentForm
 class DummyTestCase(TestCase):
     def setUp(self):
         x = 1
-        p = Profile()
-        self.logs_1 = Logs.objects.create(exercise="running", date="2021-04-11", duration="30", intensity="moderate", area="legs", owner=p)
-        testuser = User.objects.create(username="test10", email="test10@gmail.com")
+        self.logs_1 = Logs.objects.create(exercise="running", date="2021-04-11", duration="30", intensity="moderate", area="legs")
         self.comments_1 = Comment.objects.create(name="test", post=self.logs_1, body="test", created_on="2021-04-11", active=True)
         self.c = Client()
 
@@ -97,8 +95,3 @@ class DummyTestCase(TestCase):
         adminuser = User.objects.create_superuser(username="testadmin")
         Test.force_login(adminuser)
         self.assertEqual(Test.post("/fitapp/Logs/", data={"exercise": "running", "date": "2021-04-11", "duration": "30", "intensity": "moderate"}).status_code, 200)
-
-    # def test_logform(self):
-    #     form_data = {"exercise": "running", "date": "2021-04-11", "duration": "30", "intensity": "moderate"}
-    #     form = LogsForm(data=form_data)
-    #     self.assertTrue(form.is_valid())
