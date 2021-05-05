@@ -4,8 +4,12 @@
 *  Title: Testing Tools
 *  Author: Django
 *  URL: https://docs.djangoproject.com/en/3.2/topics/testing/tools/
+*  
+*  Title: How should I write tests from Forms in Django?
+*  Author: Torsten Engelbrecht
+*  URL: https://stackoverflow.com/questions/7304248/how-should-i-write-tests-for-forms-in-django
 """
-from django.test import TestCase, Client
+from django.test import TestCase, Client, RequestFactory
 from fitapp.models import User, Logs, Profile, Comment
 from django.contrib.auth.models import User
 import fitapp.views as views
@@ -18,6 +22,8 @@ class DummyTestCase(TestCase):
         self.logs_1 = Logs.objects.create(exercise="running", date="2021-04-11", duration="30", intensity="moderate", area="legs")
         self.comments_1 = Comment.objects.create(name="test", post=self.logs_1, body="test", created_on="2021-04-11", active=True)
         self.c = Client()
+        self.factory = RequestFactory()
+        self.user = User.objects.create_user(username='test', email='test@...', password='test')
 
     def test_log(self):
         Test = self.logs_1
@@ -100,3 +106,9 @@ class DummyTestCase(TestCase):
         form_data={'name': 'test', 'body': 'test'}
         form = CommentForm(data=form_data)
         self.assertTrue(form.is_valid())
+
+    def test_views(self):
+        request = self.factory.get('fitapp/progress/')
+        request.user = self.user
+        response = ProgressBar(request)
+        self.assertEqual(response.status_code, 302)
