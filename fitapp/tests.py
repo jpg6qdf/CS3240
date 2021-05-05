@@ -108,10 +108,10 @@ class DummyTestCase(TestCase):
         self.assertEqual(Test.post("/fitapp/Logs/", data={"exercise": "running", "date": "2021-04-11", "duration": "30", "intensity": "moderate", "area": "legs"}).status_code, 200)
 
     def test_logstab_submitalog2(self):
-        form_data = {"exercise": "running", "date": "2021-04-11", "duration": "30", "intensity": "moderate", "area": "legs"}
-        form = LogsForm(data=form_data)
-        self.assertTrue(form.is_valid())
-
+        Test = self.c
+        adminuser = User.objects.create_superuser(username="testadmin")
+        Test.force_login(adminuser)
+        self.assertEqual(Test.post("/fitapp/Logs/", data={"exercise": "runnings", "date": "2021-042-11", "duration": "501", "intensity": "moderate", "area": "legs"}).status_code, 200)
 
     def test_commentsform(self):
         form_data={'name': 'test', 'body': 'test'}
