@@ -151,11 +151,11 @@ class DummyTestCase(TestCase):
     def test_updatelogsviews(self):
         request = self.factory.get('fitapp/Logs/updatelogs/<int:user_id>')
         request.user = self.user
-        response = update(request, self.user.id)
+        response = updatelogs(request, self.user.id)
         self.assertEqual(response.status_code, 200)
 
     def test_userlogsviews(self):
         request = self.factory.get('fitapp/userLogs/<int:user_id>')
         request.user = self.user
-        response = update(request, self.user.id)
+        response = userLogs(request, self.user.id)
         self.assertEqual(response.status_code, 200) 
