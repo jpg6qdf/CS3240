@@ -1,3 +1,11 @@
+<!--
+REFERENCES
+*  Title: JavaScript to output html range slider values for multiple sliders
+*  Author: Philipp, Kenny
+*  Date: Jun 12 '19
+*  URL:   https://stackoverflow.com/questions/56562129/javascript-to-output-html-range-slider-values-for-multiple-sliders
+-->
+
 {% extends 'fitapp/base.html' %}
 {% load bootstrap4 %}
 {% bootstrap_css %}
@@ -9,10 +17,11 @@
 <h5 style="text-align: center">Record your exercises here! The longer and more intense your workout is, the more XP you'll earn!</h5>
 <br>
 
+
 <form action="{% url 'fitapp:updatelogs' user.id %}" method="post">
     {% csrf_token %}
     {% bootstrap_form form %}
-
+<!-- JavaScript to output html range slider values for multiple sliders code -->
     <div>
         <p>Minutes/Repetitions: <span id="demo"></span></p>
       </div>
@@ -24,9 +33,10 @@
         output.innerHTML = this.value;
       }
       </script>
-
+<!-- JavaScript to output html range slider values for multiple sliders code -->
     <input type="submit" value="Submit">
 </form>
+
 
 <br>
 

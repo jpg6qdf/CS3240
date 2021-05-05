@@ -33,7 +33,7 @@ class Migration(migrations.Migration):
                 ('date', models.DateField()),
                 ('duration', models.PositiveSmallIntegerField(default=1, validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(100)])),
                 ('intensity', models.CharField(choices=[('light', 'light'), ('moderate', 'moderate'), ('vigorous', 'vigorous')], default='light', max_length=10)),
-                ('area', models.CharField(max_length=50)),
+                ('area', models.CharField(max_length=10)),
                 ('owner', models.ForeignKey(null=True, on_delete=django.db.models.deletion.CASCADE, to='fitapp.profile')),
             ],
         ),
