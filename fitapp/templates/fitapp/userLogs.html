@@ -1,0 +1,21 @@
+{% extends 'fitapp/base.html' %}
+
+{% block content%}
+<h1 style="text-align: center"> {{user.first_name}}'s Logs </h1>
+
+<br>
+
+{%for whatever in logs%}
+<tr>
+    <td>
+        <div style="text-align: center;">
+        <a href="/fitapp/viewLogs/{{whatever.id}}" class="btn btn-primary">{{whatever.owner.user.first_name}}'s {{whatever.date}} {{whatever.area}} Workout</a>
+    </div>
+    </td><br>
+        <hr>
+</tr>
+
+<br>
+
+{%endfor%}
+{% endblock %}
