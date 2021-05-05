@@ -107,6 +107,12 @@ class DummyTestCase(TestCase):
         Test.force_login(adminuser)
         self.assertEqual(Test.post("/fitapp/Logs/", data={"exercise": "running", "date": "2021-04-11", "duration": "30", "intensity": "moderate", "area": "legs"}).status_code, 200)
 
+    def test_logstab_submitalog2(self):
+        form_data = {"exercise": "running", "date": "2021-04-11", "duration": "30", "intensity": "moderate", "area": "legs"}
+        form = LogsForm(data=form_data)
+        self.assertTrue(form.is_valid())
+
+
     def test_commentsform(self):
         form_data={'name': 'test', 'body': 'test'}
         form = CommentForm(data=form_data)
@@ -151,9 +157,7 @@ class DummyTestCase(TestCase):
     def test_updatelogsviews(self):
         request = self.factory.get('fitapp/Logs/updatelogs/<int:user_id>')
         request.user = self.user
-        print("testing update logs before", self.user.profile.current)
         response = updatelogs(request, self.user.id)
-        print("testing update logs after", self.user.profile.current)
         self.assertEqual(response.status_code, 200)
 
     def test_userlogsviews(self):
