@@ -117,6 +117,11 @@ class DummyTestCase(TestCase):
         form = CommentForm(data=form_data)
         self.assertFalse(form.is_valid())
 
+    def test_commentsform3(self):
+        form_data={'name': '', 'body': 'test'}
+        form = CommentForm(data=form_data)
+        self.assertFalse(form.is_valid())
+
     def test_profileviews(self):
         request = self.factory.get('/fitapp/progress/')
         request.user = self.user
