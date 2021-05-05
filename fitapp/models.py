@@ -58,14 +58,10 @@ def save_user_profile(sender, instance, **kwargs):
 # logs model
 class Logs(models.Model):
     exercise = models.CharField(max_length=10, choices=EXERCISE_CHOICES, default='other')#, help_text="title.")
-    date = models.DateField()#, help_text="text.")      #could be slider, buttons, etc
-    #duration = models.CharField(max_length=200)#, help_text="text.")      #could be slider, buttons, etc.        ##also includes reps.
-    
+    date = models.DateField()
     duration = models.PositiveSmallIntegerField( name=('duration'), default=DEFAULT_duration,validators=[MinValueValidator(MIN_duration), MaxValueValidator(MAX_duration)])
-        #_('duration'), 
-    intensity = models.CharField(max_length=10, choices=INTENSITY_CHOICES, default='light')#, help_text="text.")     #could be slider, buttons, etc
-    area = models.CharField(max_length=50)#, help_text="text.")     #could be slider, buttons, etc
-    ## can include other relevant info we want to encourage
+    intensity = models.CharField(max_length=10, choices=INTENSITY_CHOICES, default='light')
+    area = models.CharField(max_length=10)
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.date + ":" + self.exercise + "\n"
