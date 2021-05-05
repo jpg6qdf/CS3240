@@ -60,7 +60,8 @@ def updatelogs(request, user_id):
                 user.profile.current = user.profile.current + 10
             elif log.intensity == 'vigorous':
                 user.profile.current = user.profile.current + 15
-            if user.profile.current >= 100:
+            while user.profile.current >= 100:
+                print(user.profile.current)
                 user.profile.current = user.profile.current - 100
                 user.profile.level = user.profile.level + 1
             user.save()
@@ -93,12 +94,12 @@ def userLogs(request, user_id):
 def update(request, user_id):
     user = User.objects.get(pk=user_id)
     user.profile.current = user.profile.current + 10
-    if user.profile.current >= 100:
+    while user.profile.current >= 100:
+        print(user.profile.current)
         user.profile.current = user.profile.current - 100
         user.profile.level = user.profile.level + 1
     user.save()
-    num = user.profile.level + 10
-    return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
+    return render(request, 'fitapp/progress.html')
 
 @login_required(login_url='/')
 def log(request, logs_id):
@@ -139,7 +140,7 @@ def post_detail(request, logs_id):
 def Achievements(request):
     try:
         user = request.user
-        num = user.profile.level + 10
+        num = int((user.profile.level / 10)) + 10
     except User.DoesNotExist:
         raise Http404("User does not exist")
     return render(request, 'fitapp/achievements.html', {'user': user, 'num': num})
