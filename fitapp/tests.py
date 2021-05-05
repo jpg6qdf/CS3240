@@ -9,16 +9,16 @@
 *  Author: Torsten Engelbrecht
 *  URL: https://stackoverflow.com/questions/7304248/how-should-i-write-tests-for-forms-in-django
 *
-*  Title: How should I write tests from Forms in Django?
-*  Author: Torsten Engelbrecht
-*  URL: https://stackoverflow.com/questions/7304248/how-should-i-write-tests-for-forms-in-django
+*  Title: Advanced testing topics
+*  Author: Django
+*  URL: https://docs.djangoproject.com/en/3.2/topics/testing/advanced/#methods
 """
 from django.test import TestCase, Client, RequestFactory
 from fitapp.models import User, Logs, Profile, Comment
 from django.contrib.auth.models import User
 import fitapp.views as views
 from fitapp.forms import LogsForm, CommentForm
-from fitapp.views import ProgressBar, LogReq, viewLogs, Achievements, leaderboard, update, updatelogs, userLogs
+from fitapp.views import ProgressBar, LogReq, viewLogs, Achievements, leaderboard, update, updatelogs, userLogs, log, post_detail, deleteLog, shareable
 
 # Create your tests here.
 class DummyTestCase(TestCase):
@@ -158,4 +158,10 @@ class DummyTestCase(TestCase):
         request = self.factory.get('fitapp/userLogs/<int:user_id>')
         request.user = self.user
         response = userLogs(request, self.user.id)
+        self.assertEqual(response.status_code, 200) 
+
+    def test_logviews(self):
+        request = self.factory.get('viewLogs/<int:logs_id>')
+        request.user = self.user
+        response = log(request, self.logs_1.id)
         self.assertEqual(response.status_code, 200) 
