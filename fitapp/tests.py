@@ -14,7 +14,7 @@ from fitapp.models import User, Logs, Profile, Comment
 from django.contrib.auth.models import User
 import fitapp.views as views
 from fitapp.forms import LogsForm, CommentForm
-from fitapp.views import ProgressBar
+from fitapp.views import ProgressBar, LogReq, viewLogs, Achievements, leaderboard
 
 # Create your tests here.
 class DummyTestCase(TestCase):
@@ -108,8 +108,32 @@ class DummyTestCase(TestCase):
         form = CommentForm(data=form_data)
         self.assertTrue(form.is_valid())
 
-    def test_views(self):
-        request = self.factory.get('fitapp/progress/')
+    def test_profileviews(self):
+        request = self.factory.get('/fitapp/progress/')
         request.user = self.user
         response = ProgressBar(request)
-        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.status_code, 200)
+
+    def test_logreqviews(self):
+        request = self.factory.get('/fitapp/Logs/')
+        request.user = self.user
+        response = LogReq(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_viewlogsviews(self):
+        request = self.factory.get('/fitapp/viewLogs/')
+        request.user = self.user
+        response = viewLogs(request)
+        self.assertEqual(response.status_code, 200)
+
+    def test_achievementsviews(self):
+        request = self.factory.get('/fitapp/achievements/')
+        request.user = self.user
+        response = Achievements(request)
+        self.assertEqual(response.status_code, 200)
+    
+    def test_leaderboardviews(self):
+        request = self.factory.get('fitapp/leaderboard/')
+        request.user = self.user
+        response = leaderboard(request)
+        self.assertEqual(response.status_code, 200)
