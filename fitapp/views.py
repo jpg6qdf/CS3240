@@ -4,7 +4,6 @@
 *  Title: Creating Comments System With Django
 *  Author: Django Central
 *  URL: https://djangocentral.com/creating-comments-system-with-django/
-*
 """
 from django.views.generic.base import TemplateView
 from django.shortcuts import get_object_or_404, render
