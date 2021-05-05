@@ -145,5 +145,5 @@ class DummyTestCase(TestCase):
     def test_updateviews(self):
         request = self.factory.get('fitapp/achievements/update/<int:user_id>/')
         request.user = self.user
-        response = leaderboard(request, user.id)
+        response = leaderboard(request, self.user.id)
         self.assertEqual(response.status_code, 200)
