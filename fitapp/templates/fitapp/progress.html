@@ -1,16 +1,19 @@
+<!--
+REFERENCES
+*  Title: Bootstrap Progress Bars
+*  Author: W3 Schools
+*  URL: https://www.w3schools.com/bootstrap/bootstrap_progressbars.asp
+
+*  Title: CSS Text
+*  Author: W3 Schools
+*  URL: https://www.w3schools.com/css/css_text.asp
+
+-->
 {% extends 'fitapp/base.html' %}
 
 {% block content%}
-<!-- <h2>Progress Bar Test</h2> -->
-
-<!-- <p>{{ user.user.current }}</p>
-<p>{{ user.username }}</p> 
-
-Eventually everything below (label and progress tags) will just be 2 lines in whatever html file we decide to put the progress bar in (probably the user profile page).
-This progress.html file won't be used, just here for testing and viewing purposes. Keep the file for testing, but don't link anywhere on final project page.
-
--->
 <head>
+    <!-- CSS Text -->
     <style>
         /* Center: controls everything above the progress bar*/
         .center {
@@ -34,7 +37,7 @@ This progress.html file won't be used, just here for testing and viewing purpose
 <div class="center">
     <h1>Hello there, {{ user.first_name }}!</h1>
     <!-- <label for="bar">Current Progress:</label>
-    <progress id="bar" value="{{ user.profile.current }}" max="100"> {{ user.profile.current }}% </progress> -->
+    <progress id="bar" value="{{ user.profile.current }}" max="100"> {{ user.profile.current }}% </progress> Old progress bar without bootstrap-->
 
     
 
@@ -49,6 +52,7 @@ This progress.html file won't be used, just here for testing and viewing purpose
     <h4>Your current progress:</h4>
 </div>
 
+<!-- Bootstrap Progress Bar -->
 <div class="progress">
     <div class="progress-bar progress-bar-striped active" role="progressbar"
     aria-valuenow="{{ user.profile.current }}" aria-valuemin="0" aria-valuemax="100" style="width:{{ user.profile.current }}%">
