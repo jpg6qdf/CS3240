@@ -14,6 +14,7 @@ from fitapp.models import User, Logs, Profile, Comment
 from django.contrib.auth.models import User
 import fitapp.views as views
 from fitapp.forms import LogsForm, CommentForm
+from fitapp.views import ProgressBar
 
 # Create your tests here.
 class DummyTestCase(TestCase):
