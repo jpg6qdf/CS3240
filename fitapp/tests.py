@@ -94,4 +94,4 @@ class DummyTestCase(TestCase):
         Test = self.c
         adminuser = User.objects.create_superuser(username="testadmin")
         Test.force_login(adminuser)
-        self.assertEqual(Test.post("/fitapp/Logs/", data={"exercise": "running", "date": "2021-04-11", "duration": "30", "intensity": "moderate"}).status_code, 200)
+        self.assertEqual(Test.post("/fitapp/Logs/", data={"exercise": "running", "date": "2021-04-11", "duration": "30", "intensity": "moderate", "area": "legs"}).status_code, 200)
