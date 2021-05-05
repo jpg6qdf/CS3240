@@ -1,3 +1,10 @@
+"""
+*  REFERENCES
+*
+*  Title: Testing Tools
+*  Author: Django
+*  URL: https://docs.djangoproject.com/en/3.2/topics/testing/tools/
+"""
 from django.test import TestCase, Client
 from fitapp.models import User, Logs, Profile, Comment
 from django.contrib.auth.models import User
