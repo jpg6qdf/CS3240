@@ -18,7 +18,7 @@ from fitapp.models import User, Logs, Profile, Comment
 from django.contrib.auth.models import User
 import fitapp.views as views
 from fitapp.forms import LogsForm, CommentForm
-from fitapp.views import ProgressBar, LogReq, viewLogs, Achievements, leaderboard, update
+from fitapp.views import ProgressBar, LogReq, viewLogs, Achievements, leaderboard, update, updatelogs, userLogs
 
 # Create your tests here.
 class DummyTestCase(TestCase):
@@ -147,3 +147,15 @@ class DummyTestCase(TestCase):
         request.user = self.user
         response = update(request, self.user.id)
         self.assertEqual(response.status_code, 200)
+
+    def test_updatelogsviews(self):
+        request = self.factory.get('fitapp/Logs/updatelogs/<int:user_id>')
+        request.user = self.user
+        response = update(request, self.user.id)
+        self.assertEqual(response.status_code, 200)
+
+    def test_userlogsviews(self):
+       request = self.factory.get('fitapp/userLogs/<int:user_id>')
+        request.user = self.user
+        response = update(request, self.user.id)
+        self.assertEqual(response.status_code, 200) 
